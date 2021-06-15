@@ -5,7 +5,8 @@
             "title": "Gabby Barrett",
             "subtitle": "Sunday, June 20, 2021",
             "banner": "Billboard's 2021 Top Female Country Artist",
-            "localImageNamed": "gabby"
+            "localImageNamed": "gabby",
+            "imageUrl": "https://scottdenowh.github.io/osd/gabby2.png"
         },
         {
             "title": "Riley Green",

@@ -1,0 +1,321 @@
+
+{
+    "artists": [
+        {
+            "title": "Gabby Barrett",
+            "subtitle": "Sunday, June 20, 2021",
+            "banner": "Billboard's 2021 Top Female Country Artist",
+            "localImageNamed": "gabby"
+        },
+        {
+            "title": "Riley Green",
+            "subtitle": "Saturday, June 19, 2021",
+            "localImageNamed": "riley"
+        },
+        {
+            "title": "Jimmie Allen",
+            "subtitle": "Friday, June 18, 2021",
+            "banner": "2021 ACM New Male Artist of the Year",
+            "localImageNamed": "jimmie"
+        },
+        {
+            "title": "Granger Smith",
+            "subtitle": "Thursday, June 17, 2021",
+            "localImageNamed": "granger"
+        }
+    ],
+    "schedules": [
+        {
+            "group": 0,
+            "glyph": "👏",
+            "eventName": "Gates Open!",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "❤️",
+            "eventName": "Rock River Valley\nBlood Drive",
+            "location": "Rockton American Center",
+            "startTime": "1:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "Give Blood get a 4 Day General Admission Festival Pass, donate a pair of eyeglasses for a 2nd pass."
+        },
+        {
+            "group": 0,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "5:00 PM",
+            "endTime": "10:00 PM",
+            "extra": "5-9pm Ride Special $20 Wristband Special, all rides all ages"
+        },
+        {
+            "group": 0,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🍺",
+            "eventName": "Miller/Coors Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🎶",
+            "eventName": "DJ",
+            "location": "Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "5:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 0,
+            "glyph": "🎶",
+            "eventName": "Minimal",
+            "location": "Beer Tent",
+            "startTime": "5:30 PM",
+            "endTime": "7:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 0,
+            "glyph": "🎤",
+            "eventName": "Granger Smith\nFeaturing Earl Dibbles Jr\nwith Bella Cain",
+            "location": "Main Stage",
+            "startTime": "7:30 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 1,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍺",
+            "eventName": "Miller/Coors Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "5:00 PM",
+            "endTime": "10:00 PM",
+            "extra": "Ride Special $20 Ticket Sheets"
+        },
+        {
+            "group": 1,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎶",
+            "eventName": "DJ",
+            "location": "Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "5:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 1,
+            "glyph": "🎶",
+            "eventName": "Dirt Road Rebelz",
+            "location": "Beer Tent",
+            "startTime": "5:30 PM",
+            "endTime": "7:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 1,
+            "glyph": "🎤",
+            "eventName": "Jimmie Allen\nwith Matt Stell",
+            "location": "Main Stage",
+            "startTime": "8:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 2,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "12:30 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🇺🇸",
+            "eventName": "Parade",
+            "location": "Main Street, Rockton",
+            "startTime": "12:00 PM",
+            "extra": "No ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM",
+            "extra": "1-5pm Ride Special $20 Wristband Special, all rides all ages"
+        },
+        {
+            "group": 2,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🍺",
+            "eventName": "Miller/Coors Beer Tent",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },    
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "DJ",
+            "location": "Beer Tent",
+            "startTime": "1:00 PM",
+            "endTime": "3:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Penny Mae Dixon Band",
+            "location": "Beer Tent",
+            "startTime": "3:30 PM",
+            "endTime": "5:30 PM",
+            "extra": "No additional ticket required"
+        },    
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Blind Date",
+            "location": "Beer Tent",
+            "startTime": "6:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎤",
+            "eventName": "Riley Green\nwith Troy Cartwright",
+            "location": "Main Stage",
+            "startTime": "8:30 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 3,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "1:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM",
+            "extra": "Ride special - All rides discounted to 2 or 3 tickets"
+        },
+        {
+            "group": 3,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🍺",
+            "eventName": "Miller/Coors Beer Tent",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "4:00 PM",
+            "endTime": "10:00 PM"
+        },    
+        {
+            "group": 3,
+            "glyph": "🐂",
+            "eventName": "Mechanical Bull Rides",
+            "location": "Near Beer Tent",
+            "startTime": "5:00 PM",
+            "endTime": "9:00 PM"
+        },    
+        {
+            "group": 3,
+            "glyph": "💰",
+            "eventName": "Hefty 50/50 Drawing",
+            "location": "Main Stage",
+            "startTime": "8:45 PM",
+            "extra": "Need not be present to win"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "DJ",
+            "location": "Beer Tent",
+            "startTime": "2:30 PM",
+            "endTime": "4:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "Bree Morgan",
+            "location": "Beer Tent",
+            "startTime": "4:30 PM",
+            "endTime": "6:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎤",
+            "eventName": "Gabby Barrett\nwith Walker County",
+            "location": "Main Stage",
+            "startTime": "7:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        }
+    ],
+    "scheduleGroups": [
+        "Thursday, June 17, 2021",
+        "Friday, June 18, 2021",
+        "Saturday, June 19, 2021",
+        "Sunday, June 20, 2021"
+    ]
+}

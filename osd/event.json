@@ -2,20 +2,9 @@
 {
     "artists": [
         {
-            "title": "Old Settlers Days is On 🎉",
-            "subtitle": "The fun starts Thursday!",
-            "imageUrl": "https://scottdenowh.github.io/osd/grounds.png"
-        },
-        {
-            "title": "Gabby Barrett",
-            "subtitle": "Sunday, June 20, 2021",
-            "banner": "Billboard's 2021 Top Female Country Artist",
-            "localImageNamed": "gabby"
-        },
-        {
-            "title": "Riley Green",
-            "subtitle": "Saturday, June 19, 2021",
-            "localImageNamed": "riley"
+            "title": "Granger Smith",
+            "subtitle": "Thursday, June 17, 2021",
+            "localImageNamed": "granger"
         },
         {
             "title": "Jimmie Allen",
@@ -24,9 +13,15 @@
             "localImageNamed": "jimmie"
         },
         {
-            "title": "Granger Smith",
-            "subtitle": "Thursday, June 17, 2021",
-            "localImageNamed": "granger"
+            "title": "Riley Green",
+            "subtitle": "Saturday, June 19, 2021",
+            "localImageNamed": "riley"
+        },
+        {
+            "title": "Gabby Barrett",
+            "subtitle": "Sunday, June 20, 2021",
+            "banner": "Billboard's 2021 Top Female Country Artist",
+            "localImageNamed": "gabby"
         }
     ],
     "schedules": [

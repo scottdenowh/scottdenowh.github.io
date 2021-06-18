@@ -126,7 +126,7 @@
             "group": 1,
             "glyph": "⭐️",
             "eventName": "Sponsor’s VIP Tent",
-            "startTime": "1:00 PM",
+            "startTime": "5:00 PM",
             "endTime": "11:00 PM"
         },    
         {
@@ -198,14 +198,6 @@
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "4:00 PM",
             "endTime": "10:00 PM"
-        },    
-        {
-            "group": 2,
-            "glyph": "🐂",
-            "eventName": "Mechanical Bull Rides",
-            "location": "Near Beer Tent",
-            "startTime": "5:00 PM",
-            "endTime": "9:00 PM"
         },    
         {
             "group": 2,

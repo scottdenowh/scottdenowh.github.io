@@ -34,11 +34,259 @@
         {
             "group": 0,
             "glyph": "👏",
-            "eventName": "We will see you soon!",
-            "startTime": " "
+            "eventName": "Gates Open",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "❤️",
+            "eventName": "Rock River Valley\nBlood Drive",
+            "location": "The American Legion, 221 W Main St, Rockton, IL",
+            "startTime": "1:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "Give Blood get a 4 Day General Admission Festival Pass, donate a pair of eyeglasses for a 2nd pass."
+        },
+        {
+            "group": 0,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "5:00 PM",
+            "endTime": "10:00 PM",
+            "extra": "5-9pm Ride Special TBA"
+        },
+        {
+            "group": 0,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🎶",
+            "eventName": "Minimal",
+            "location": "Apex Beer Tent",
+            "startTime": "5:00 PM",
+            "endTime": "7:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 0,
+            "glyph": "🎤",
+            "eventName": "Ashley Cooke\nSpencer Crandall\nCooper Alan",
+            "location": "Main Stage",
+            "startTime": "8:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 1,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "5:00 PM",
+            "endTime": "10:00 PM",
+            "extra": "Ride Special TBA"
+        },
+        {
+            "group": 1,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎶",
+            "eventName": "Chico and The Man",
+            "location": "Apex Beer Tent",
+            "startTime": "5:00 PM",
+            "endTime": "7:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 1,
+            "glyph": "🎤",
+            "eventName": "LoCash\nwith Sean Stemaly",
+            "location": "Main Stage",
+            "startTime": "8:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 2,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "12:30 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🇺🇸",
+            "eventName": "Parade",
+            "location": "Main Street, Rockton",
+            "startTime": "12:00 PM",
+            "extra": "No ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM",
+            "extra": "1-5pm Special TBA"
+        },
+        {
+            "group": 2,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },    
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Dirt Road Rebelz",
+            "location": "Apex Beer Tent",
+            "startTime": "3:00 PM",
+            "endTime": "5:30 PM",
+            "extra": "No additional ticket required"
+        },    
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Over The Limit",
+            "location": "Apex Beer Tent",
+            "startTime": "6:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎤",
+            "eventName": "Ashley McBryde\nwith Caylee Hammack",
+            "location": "Main Stage",
+            "startTime": "8:30 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 3,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "1:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM",
+            "extra": "Ride special TBA"
+        },
+        {
+            "group": 3,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "4:00 PM",
+            "endTime": "10:00 PM"
+        },    
+        {
+            "group": 3,
+            "glyph": "💰",
+            "eventName": "Hefty 50/50 Drawing",
+            "location": "Main Stage",
+            "startTime": "8:45 PM",
+            "extra": "Need not be present to win"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "Bree Morgan",
+            "location": "Apex Beer Tent",
+            "startTime": "2:30 PM",
+            "endTime": "4:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "Dirty Fishnet Stockings",
+            "location": "Apex Beer Tent",
+            "startTime": "4:30 PM",
+            "endTime": "6:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎤",
+            "eventName": "Jordan Davis\nwith Shy Carter",
+            "location": "Main Stage",
+            "startTime": "7:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         }
     ],
     "scheduleGroups": [
-        "June 16 - 19"
+        "Thursday, June 16, 2022",
+        "Friday, June 17, 2022",
+        "Saturday, June 18, 2022",
+        "Sunday, June 19, 2022"
     ]
 }

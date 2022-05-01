@@ -2,37 +2,42 @@
 {
     "artists": [
         {
-            "title": "Gabby Barrett",
-            "subtitle": "Sunday, June 20, 2021",
-            "banner": "Billboard's 2021 Top Female Country Artist",
-            "localImageNamed": "gabby"
+            "title": "Ashley Cooke, Spencer Crandall, and Cooper Alan",
+            "subtitle": "Thursday, June 16, 2022",
+            "localImageNamed": "gabby",
+            "imageUrl": "https://scottdenowh.github.io/osd/thursday.png"
         },
         {
-            "title": "Riley Green",
-            "subtitle": "Saturday, June 19, 2021",
-            "localImageNamed": "riley"
+            "title": "LOCASH",
+            "subtitle": "Friday, June 17, 2022",
+            "localImageNamed": "riley",
+            "banner": "With Sean Stemaly",
+            "imageUrl": "https://scottdenowh.github.io/osd/friday.png"
         },
         {
-            "title": "Jimmie Allen",
-            "subtitle": "Friday, June 18, 2021",
-            "banner": "2021 ACM New Male Artist of the Year",
-            "localImageNamed": "jimmie"
+            "title": "Ashley McBryde",
+            "subtitle": "Saturday, June 18, 2022",
+            "banner": "With Caylee Hammack",
+            "localImageNamed": "jimmie",
+            "imageUrl": "https://scottdenowh.github.io/osd/saturday.png"
         },
         {
-            "title": "Granger Smith",
+            "title": "Jordan Davis",
             "subtitle": "Thursday, June 17, 2021",
-            "localImageNamed": "granger"
+            "banner": "With Shy Carter",
+            "localImageNamed": "granger",
+            "imageUrl": "https://scottdenowh.github.io/osd/sunday.png"
         }
     ],
     "schedules": [
         {
             "group": 0,
             "glyph": "👏",
-            "eventName": "Thanks for a great year!",
+            "eventName": "We will see you soon!",
             "startTime": " "
         }
     ],
     "scheduleGroups": [
-        " "
+        "June 16 - 19"
     ]
 }

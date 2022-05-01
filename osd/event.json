@@ -2,7 +2,8 @@
 {
     "artists": [
         {
-            "title": "Ashley Cooke, Spencer Crandall, and Cooper Alan",
+            "title": "Ashley Cooke, Spencer Crandall",
+            "banner": "Cooper Alan",
             "subtitle": "Thursday, June 16, 2022",
             "localImageNamed": "gabby",
             "imageUrl": "https://scottdenowh.github.io/osd/thursday.png"

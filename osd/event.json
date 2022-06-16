@@ -90,6 +90,18 @@
         },
         {
             "group": 0,
+            "glyph": "🤩",
+            "eventName": "Ashley Cooke Meet & Greet",
+            "startTime": "6:30 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🤩",
+            "eventName": "Spencer Crandall Meet & Greet",
+            "startTime": "7:30 PM"
+        },
+        {
+            "group": 0,
             "glyph": "🎤",
             "eventName": "Ashley Cooke\nSpencer Crandall\nCooper Alan",
             "location": "Main Stage",

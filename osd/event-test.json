@@ -2,7 +2,7 @@
 {
     "artists": [
         {
-            "title": "X Festival Update",
+            "title": "Festival Update",
             "subtitle": "Visit oldsettlersdays.com for more info",
             "localImageNamed": "x",
             "imageUrl": "https://scottdenowh.github.io/osd/notice2.png"
@@ -87,6 +87,18 @@
             "startTime": "5:00 PM",
             "endTime": "7:00 PM",
             "extra": "No additional ticket required"
+        },
+        {
+            "group": 0,
+            "glyph": "🤩",
+            "eventName": "Ashley Cooke Meet & Greet",
+            "startTime": "6:30 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🤩",
+            "eventName": "Spencer Crandall Meet & Greet",
+            "startTime": "7:30 PM"
         },
         {
             "group": 0,
@@ -197,7 +209,7 @@
             "eventName": "Dirt Road Rebelz",
             "location": "Apex Beer Tent",
             "startTime": "3:00 PM",
-            "endTime": "5:30 PM",
+            "endTime": "5:00 PM",
             "extra": "No additional ticket required"
         },    
         {
@@ -205,8 +217,8 @@
             "glyph": "🎶",
             "eventName": "Over The Limit",
             "location": "Apex Beer Tent",
-            "startTime": "6:00 PM",
-            "endTime": "8:00 PM",
+            "startTime": "5:30 PM",
+            "endTime": "7:30 PM",
             "extra": "No additional ticket required"
         },
         {

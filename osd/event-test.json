@@ -2,9 +2,13 @@
 {
     "artists": [
         {
-            "title": "TEST2 Cooper Alan, Ashley Cooke, Spencer Crandall",
+            "title": "Due to unforeseen circumstances Ashley McBryde’s performance on Saturday at the Old Settlers Days Festival has been canceled."
+        },
+        {
+            "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
             "subtitle": "Thursday, June 16, 2022",
-            "imageUrl": "https://scottdenowh.github.io/osd/OSD%20Logo%20Blue.png"
+            "localImageNamed": "gabby",
+            "imageUrl": "https://scottdenowh.github.io/osd/thursday2.png"
         },
         {
             "title": "LOCASH",
@@ -14,11 +18,10 @@
             "imageUrl": "https://scottdenowh.github.io/osd/friday.png"
         },
         {
-            "title": "Ashley McBryde",
+            "title": "Tyler Rich, Kameron Marlowe",
             "subtitle": "Saturday, June 18, 2022",
             "banner": "With Caylee Hammack",
-            "localImageNamed": "jimmie",
-            "imageUrl": "https://scottdenowh.github.io/osd/saturday.png"
+            "imageUrl": "https://scottdenowh.github.io/osd/tylerrich.png"
         },
         {
             "title": "Jordan Davis",
@@ -206,7 +209,7 @@
         {
             "group": 2,
             "glyph": "🎤",
-            "eventName": "Ashley McBryde\nwith Caylee Hammack",
+            "eventName": "Tyler Rich, Kameron Marlowe\nwith Caylee Hammack",
             "location": "Main Stage",
             "startTime": "8:30 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"

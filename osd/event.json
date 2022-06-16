@@ -2,6 +2,12 @@
 {
     "artists": [
         {
+            "title": "Festival Update",
+            "subtitle": "Visit oldsettlersdays.com for more info",
+            "localImageNamed": "x",
+            "imageUrl": "https://scottdenowh.github.io/osd/notice2.png"
+        },
+        {
             "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
             "subtitle": "Thursday, June 16, 2022",
             "localImageNamed": "gabby",

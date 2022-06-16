@@ -2,8 +2,7 @@
 {
     "artists": [
         {
-            "title": "Ashley Cooke, Spencer Crandall",
-            "banner": "Cooper Alan",
+            "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
             "subtitle": "Thursday, June 16, 2022",
             "localImageNamed": "gabby",
             "imageUrl": "https://scottdenowh.github.io/osd/thursday2.png"
@@ -16,11 +15,10 @@
             "imageUrl": "https://scottdenowh.github.io/osd/friday.png"
         },
         {
-            "title": "Ashley McBryde",
+            "title": "Tyler Rich, Kameron Marlowe",
             "subtitle": "Saturday, June 18, 2022",
             "banner": "With Caylee Hammack",
-            "localImageNamed": "jimmie",
-            "imageUrl": "https://scottdenowh.github.io/osd/saturday.png"
+            "imageUrl": "https://scottdenowh.github.io/osd/tylerrich.png"
         },
         {
             "title": "Jordan Davis",
@@ -208,7 +206,7 @@
         {
             "group": 2,
             "glyph": "🎤",
-            "eventName": "Ashley McBryde\nwith Caylee Hammack",
+            "eventName": "Tyler Rich, Kameron Marlowe\nwith Caylee Hammack",
             "location": "Main Stage",
             "startTime": "8:30 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"

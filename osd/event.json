@@ -80,6 +80,18 @@
             "extra": "No additional ticket required"
         },
         {
+          "group": 0,
+          "glyph": "🤩",
+          "eventName": "Sean Stemaly\nMeet & Greet",
+          "startTime": "7:00 PM"
+        },
+        {
+          "group": 0,
+          "glyph": "🤩",
+          "eventName": "LOCASH\nMeet & Greet",
+          "startTime": "8:30 PM"
+        },
+        {
             "group": 0,
             "glyph": "🎤",
             "eventName": "LOCASH\nwith Sean Stemaly",

@@ -8,12 +8,6 @@
             "imageUrl": "https://scottdenowh.github.io/osd/notice2.png"
         },
         {
-            "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
-            "subtitle": "Thursday, June 16, 2022",
-            "localImageNamed": "gabby",
-            "imageUrl": "https://scottdenowh.github.io/osd/thursday2.png"
-        },
-        {
             "title": "LOCASH",
             "subtitle": "Friday, June 17, 2022",
             "localImageNamed": "riley",
@@ -32,6 +26,12 @@
             "banner": "With Shy Carter",
             "localImageNamed": "granger",
             "imageUrl": "https://scottdenowh.github.io/osd/sunday.png"
+        },
+        {
+            "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
+            "subtitle": "Thursday, June 16, 2022",
+            "localImageNamed": "gabby",
+            "imageUrl": "https://scottdenowh.github.io/osd/thursday2.png"
         }
     ],
     "schedules": [
@@ -43,23 +43,6 @@
         },
         {
             "group": 0,
-            "glyph": "❤️",
-            "eventName": "Rock River Valley\nBlood Drive",
-            "location": "The American Legion, 221 W Main St, Rockton, IL",
-            "startTime": "1:00 PM",
-            "endTime": "8:00 PM",
-            "extra": "Give Blood get a 4 Day General Admission Festival Pass, donate a pair of eyeglasses for a 2nd pass."
-        },
-        {
-            "group": 0,
-            "glyph": "🎡",
-            "eventName": "Midway by Skinners Amusements",
-            "startTime": "5:00 PM",
-            "endTime": "10:00 PM",
-            "extra": "5-9pm Wristbands All Rides, All Ages $25.00"
-        },
-        {
-            "group": 0,
             "glyph": "🍿",
             "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
             "startTime": "4:00 PM",
@@ -74,62 +57,6 @@
         },
         {
             "group": 0,
-            "glyph": "⭐️",
-            "eventName": "Sponsor’s VIP Tent",
-            "startTime": "5:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🎶",
-            "eventName": "Minimal",
-            "location": "Apex Beer Tent",
-            "startTime": "5:00 PM",
-            "endTime": "7:00 PM",
-            "extra": "No additional ticket required"
-        },
-        {
-            "group": 0,
-            "glyph": "🤩",
-            "eventName": "Ashley Cooke Meet & Greet",
-            "startTime": "6:30 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🤩",
-            "eventName": "Spencer Crandall Meet & Greet",
-            "startTime": "7:30 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🎤",
-            "eventName": "Ashley Cooke\nSpencer Crandall\nCooper Alan",
-            "location": "Main Stage",
-            "startTime": "7:30 PM",
-            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
-        },
-        {
-            "group": 1,
-            "glyph": "👏",
-            "eventName": "Gates Open",
-            "startTime": "4:00 PM"
-        },
-        {
-            "group": 1,
-            "glyph": "🍿",
-            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
-            "startTime": "4:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 1,
-            "glyph": "🍺",
-            "eventName": "Apex Beer Tent",
-            "startTime": "4:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 1,
             "glyph": "🎡",
             "eventName": "Midway by Skinners Amusements",
             "startTime": "5:00 PM",
@@ -137,14 +64,14 @@
             "extra": "Ride Special TBA"
         },
         {
-            "group": 1,
+            "group": 0,
             "glyph": "⭐️",
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "5:00 PM",
             "endTime": "11:00 PM"
         },
         {
-            "group": 1,
+            "group": 0,
             "glyph": "🎶",
             "eventName": "Chico and The Man",
             "location": "Apex Beer Tent",
@@ -153,7 +80,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 1,
+            "group": 0,
             "glyph": "🎤",
             "eventName": "LOCASH\nwith Sean Stemaly",
             "location": "Main Stage",
@@ -161,13 +88,13 @@
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "👏",
             "eventName": "Gates Open",
             "startTime": "12:30 PM"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🇺🇸",
             "eventName": "Parade",
             "location": "Main Street, Rockton",
@@ -175,7 +102,7 @@
             "extra": "No ticket required"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🎡",
             "eventName": "Midway by Skinners Amusements",
             "startTime": "1:00 PM",
@@ -183,28 +110,28 @@
             "extra": "1-5pm Wristbands All Rides, All Ages $25.00"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🍿",
             "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
             "startTime": "1:00 PM",
             "endTime": "11:30 PM"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🍺",
             "eventName": "Apex Beer Tent",
             "startTime": "1:00 PM",
             "endTime": "11:00 PM"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "⭐️",
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "5:00 PM",
             "endTime": "11:00 PM"
         },    
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🎶",
             "eventName": "Dirt Road Rebelz",
             "location": "Apex Beer Tent",
@@ -213,7 +140,7 @@
             "extra": "No additional ticket required"
         },    
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🎶",
             "eventName": "Over The Limit",
             "location": "Apex Beer Tent",
@@ -222,7 +149,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 2,
+            "group": 1,
             "glyph": "🎤",
             "eventName": "Tyler Rich, Kameron Marlowe\nwith Caylee Hammack",
             "location": "Main Stage",
@@ -230,13 +157,13 @@
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "👏",
             "eventName": "Gates Open",
             "startTime": "1:30 PM"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🎡",
             "eventName": "Midway by Skinners Amusements",
             "startTime": "2:00 PM",
@@ -244,28 +171,28 @@
             "extra": "Reduced Ticket Pricing"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🍿",
             "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
             "startTime": "2:00 PM",
             "endTime": "9:30 PM"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🍺",
             "eventName": "Apex Beer Tent",
             "startTime": "2:00 PM",
             "endTime": "9:30 PM"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "⭐️",
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "4:00 PM",
             "endTime": "10:00 PM"
         },    
         {
-            "group": 3,
+            "group": 2,
             "glyph": "💰",
             "eventName": "Hefty 50/50 Drawing",
             "location": "Main Stage",
@@ -273,7 +200,7 @@
             "extra": "Need not be present to win"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🎶",
             "eventName": "Bree Morgan",
             "location": "Apex Beer Tent",
@@ -282,7 +209,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🎶",
             "eventName": "Dirty Fishnet Stockings",
             "location": "Apex Beer Tent",
@@ -291,7 +218,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 3,
+            "group": 2,
             "glyph": "🎤",
             "eventName": "Jordan Davis\nwith Shy Carter",
             "location": "Main Stage",
@@ -300,7 +227,6 @@
         }
     ],
     "scheduleGroups": [
-        "Thursday, June 16, 2022",
         "Friday, June 17, 2022",
         "Saturday, June 18, 2022",
         "Sunday, June 19, 2022"

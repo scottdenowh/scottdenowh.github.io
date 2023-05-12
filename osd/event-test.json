@@ -4,28 +4,28 @@
             "title": "Mitchell Tenpenny",
             "subtitle": "Thursday, June 15, 2023",
             "banner": "With Lily Rose",
-            "localImageNamed": "",
+            "localImageNamed": "thursday2023",
             "imageUrl": "https://scottdenowh.github.io/osd/thursday2023.png"
         },
         {
             "title": "Marcus King",
             "subtitle": "Friday, June 16, 2023",
             "banner": "With Meg McRee",
-            "localImageNamed": "",
+            "localImageNamed": "friday2023",
             "imageUrl": "https://scottdenowh.github.io/osd/friday2023.png"
         },
         {
             "title": "Jackson Dean",
             "subtitle": "Saturday, June 17, 2023",
             "banner": "With Mackenzie Carpenter",
-            "localImageNamed": "",
+            "localImageNamed": "saturday2023",
             "imageUrl": "https://scottdenowh.github.io/osd/saturday2023.png"
         },
         {
             "title": "Josh Turner",
             "subtitle": "Sunday, June 18, 2023",
             "banner": "With Mo Pitney",
-            "localImageNamed": "",
+            "localImageNamed": "sunday2023",
             "imageUrl": "https://scottdenowh.github.io/osd/sunday2023.png"
         }
     ],
@@ -184,7 +184,7 @@
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "5:00 PM",
             "endTime": "11:00 PM"
-        },    
+        },
         {
             "group": 2,
             "glyph": "🎶",
@@ -193,7 +193,7 @@
             "startTime": "3:00 PM",
             "endTime": "5:00 PM",
             "extra": "No additional ticket required"
-        },    
+        },
         {
             "group": 2,
             "glyph": "🎶",
@@ -245,7 +245,7 @@
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "4:00 PM",
             "endTime": "10:00 PM"
-        },    
+        },
         {
             "group": 3,
             "glyph": "💰",

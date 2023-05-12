@@ -1,37 +1,32 @@
-
 {
     "artists": [
         {
-            "title": "Festival Update",
-            "subtitle": "Visit oldsettlersdays.com for more info",
-            "localImageNamed": "x",
-            "imageUrl": "https://scottdenowh.github.io/osd/notice2.png"
+            "title": "Mitchell Tenpenny",
+            "subtitle": "Thursday, June 15, 2023",
+            "banner": "With Lily Rose",
+            "localImageNamed": "",
+            "imageUrl": "https://scottdenowh.github.io/osd/thursday2023.png"
         },
         {
-            "title": "Cooper Alan, Ashley Cooke, Spencer Crandall",
-            "subtitle": "Thursday, June 16, 2022",
-            "localImageNamed": "gabby",
-            "imageUrl": "https://scottdenowh.github.io/osd/thursday2.png"
+            "title": "Marcus King",
+            "subtitle": "Friday, June 16, 2023",
+            "banner": "With Meg McRee",
+            "localImageNamed": "",
+            "imageUrl": "https://scottdenowh.github.io/osd/friday2023.png"
         },
         {
-            "title": "LOCASH",
-            "subtitle": "Friday, June 17, 2022",
-            "localImageNamed": "riley",
-            "banner": "With Sean Stemaly",
-            "imageUrl": "https://scottdenowh.github.io/osd/friday.png"
+            "title": "Jackson Dean",
+            "subtitle": "Saturday, June 17, 2023",
+            "banner": "With Mackenzie Carpenter",
+            "localImageNamed": "",
+            "imageUrl": "https://scottdenowh.github.io/osd/saturday2023.png"
         },
         {
-            "title": "Tyler Rich, Kameron Marlowe",
-            "subtitle": "Saturday, June 18, 2022",
-            "banner": "With Caylee Hammack",
-            "imageUrl": "https://scottdenowh.github.io/osd/tylerrich.png"
-        },
-        {
-            "title": "Jordan Davis",
-            "subtitle": "Sunday, June 19, 2022",
-            "banner": "With Shy Carter",
-            "localImageNamed": "granger",
-            "imageUrl": "https://scottdenowh.github.io/osd/sunday.png"
+            "title": "Josh Turner",
+            "subtitle": "Sunday, June 18, 2023",
+            "banner": "With Mo Pitney",
+            "localImageNamed": "",
+            "imageUrl": "https://scottdenowh.github.io/osd/sunday2023.png"
         }
     ],
     "schedules": [
@@ -82,7 +77,7 @@
         {
             "group": 0,
             "glyph": "🎶",
-            "eventName": "Minimal",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "5:00 PM",
             "endTime": "7:00 PM",
@@ -90,22 +85,10 @@
         },
         {
             "group": 0,
-            "glyph": "🤩",
-            "eventName": "Ashley Cooke Meet & Greet",
-            "startTime": "6:30 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🤩",
-            "eventName": "Spencer Crandall Meet & Greet",
-            "startTime": "7:30 PM"
-        },
-        {
-            "group": 0,
             "glyph": "🎤",
-            "eventName": "Ashley Cooke\nSpencer Crandall\nCooper Alan",
+            "eventName": "Mitchell Tenpenny\nWith Lily Rose",
             "location": "Main Stage",
-            "startTime": "7:30 PM",
+            "startTime": "8:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
         {
@@ -133,8 +116,7 @@
             "glyph": "🎡",
             "eventName": "Midway by Skinners Amusements",
             "startTime": "5:00 PM",
-            "endTime": "10:00 PM",
-            "extra": "Ride Special TBA"
+            "endTime": "10:00 PM"
         },
         {
             "group": 1,
@@ -146,7 +128,7 @@
         {
             "group": 1,
             "glyph": "🎶",
-            "eventName": "Chico and The Man",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "5:00 PM",
             "endTime": "7:30 PM",
@@ -155,7 +137,7 @@
         {
             "group": 1,
             "glyph": "🎤",
-            "eventName": "LOCASH\nwith Sean Stemaly",
+            "eventName": "Marcus King\nwith Meg McRee",
             "location": "Main Stage",
             "startTime": "8:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
@@ -206,7 +188,7 @@
         {
             "group": 2,
             "glyph": "🎶",
-            "eventName": "Dirt Road Rebelz",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "3:00 PM",
             "endTime": "5:00 PM",
@@ -215,7 +197,7 @@
         {
             "group": 2,
             "glyph": "🎶",
-            "eventName": "Over The Limit",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "5:30 PM",
             "endTime": "7:30 PM",
@@ -224,7 +206,7 @@
         {
             "group": 2,
             "glyph": "🎤",
-            "eventName": "Tyler Rich, Kameron Marlowe\nwith Caylee Hammack",
+            "eventName": "Jackson Deen\nwith Mackenzie Carpenter",
             "location": "Main Stage",
             "startTime": "7:30 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
@@ -241,7 +223,7 @@
             "eventName": "Midway by Skinners Amusements",
             "startTime": "2:00 PM",
             "endTime": "9:30 PM",
-            "extra": "Reduced Ticket Pricing"
+            "extra": "Reduced Ticket Pricing (ex. 3🎟 → 2🎟)"
         },
         {
             "group": 3,
@@ -275,7 +257,7 @@
         {
             "group": 3,
             "glyph": "🎶",
-            "eventName": "Bree Morgan",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "2:30 PM",
             "endTime": "4:00 PM",
@@ -284,7 +266,7 @@
         {
             "group": 3,
             "glyph": "🎶",
-            "eventName": "Dirty Fishnet Stockings",
+            "eventName": "TBA",
             "location": "Apex Beer Tent",
             "startTime": "4:30 PM",
             "endTime": "6:30 PM",
@@ -293,16 +275,16 @@
         {
             "group": 3,
             "glyph": "🎤",
-            "eventName": "Jordan Davis\nwith Shy Carter",
+            "eventName": "Josh Turner\nwith Mo Pitney",
             "location": "Main Stage",
             "startTime": "7:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         }
     ],
     "scheduleGroups": [
-        "Thursday, June 16, 2022",
-        "Friday, June 17, 2022",
-        "Saturday, June 18, 2022",
-        "Sunday, June 19, 2022"
+        "Thursday, June 15, 2023",
+        "Friday, June 16, 2023",
+        "Saturday, June 17, 2023",
+        "Sunday, June 18, 2023"
     ]
 }

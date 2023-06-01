@@ -74,10 +74,9 @@
         {
             "group": 0,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Minimal",
             "location": "Apex Beer Tent",
-            "startTime": "5:00 PM",
-            "endTime": "7:00 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },
         {
@@ -125,10 +124,9 @@
         {
             "group": 1,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Blind Date",
             "location": "Apex Beer Tent",
-            "startTime": "5:00 PM",
-            "endTime": "7:30 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },
         {
@@ -197,19 +195,17 @@
         {
             "group": 2,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Lizzi Neal Band",
             "location": "Apex Beer Tent",
-            "startTime": "3:00 PM",
-            "endTime": "5:00 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },    
         {
             "group": 2,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Rollin' Wiskey",
             "location": "Apex Beer Tent",
-            "startTime": "5:30 PM",
-            "endTime": "7:30 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },
         {
@@ -266,19 +262,17 @@
         {
             "group": 3,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Bree Morgan",
             "location": "Apex Beer Tent",
-            "startTime": "2:30 PM",
-            "endTime": "4:00 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },
         {
             "group": 3,
             "glyph": "🎶",
-            "eventName": "TBA",
+            "eventName": "Dirty Fishnet Stockings",
             "location": "Apex Beer Tent",
-            "startTime": "4:30 PM",
-            "endTime": "6:30 PM",
+            "startTime": "TBA",
             "extra": "No additional ticket required"
         },
         {

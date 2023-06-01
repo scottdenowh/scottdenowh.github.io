@@ -141,6 +141,18 @@
         },
         {
             "group": 2,
+            "glyph": "📋",
+            "eventName": "OSD5K Check-in",
+            "startTime": "7:00 AM"
+        },
+        {
+            "group": 2,
+            "glyph": "🏃‍♀️",
+            "eventName": "OSD5K Race Start",
+            "startTime": "8:00 AM"
+        },
+        {
+            "group": 2,
             "glyph": "👏",
             "eventName": "Gates Open",
             "startTime": "12:30 PM"

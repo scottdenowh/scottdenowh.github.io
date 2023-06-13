@@ -76,14 +76,15 @@
             "glyph": "🎶",
             "eventName": "Minimal",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "5:00 PM",
+            "endTime": "7:00 PM",
             "extra": "No additional ticket required"
         },
         {
             "group": 0,
             "glyph": "🎤",
             "eventName": "Mitchell Tenpenny\nWith Lily Rose",
-            "location": "Main Stage",
+            "location": "Bryden Motors Main Stage",
             "startTime": "8:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
@@ -126,14 +127,15 @@
             "glyph": "🎶",
             "eventName": "Blind Date",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "5:00 PM",
+            "endTime": "7:00 PM",
             "extra": "No additional ticket required"
         },
         {
             "group": 1,
             "glyph": "🎤",
             "eventName": "Marcus King\nwith Meg McRee",
-            "location": "Main Stage",
+            "location": "Bryden Motors Main Stage",
             "startTime": "8:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
@@ -197,7 +199,8 @@
             "glyph": "🎶",
             "eventName": "Lizzi Neal Band",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "3:00 PM",
+            "endTime": "5:00 PM",
             "extra": "No additional ticket required"
         },    
         {
@@ -205,15 +208,16 @@
             "glyph": "🎶",
             "eventName": "Rollin' Wiskey",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "6:00 PM",
+            "endTime": "8:00 PM",
             "extra": "No additional ticket required"
         },
         {
             "group": 2,
             "glyph": "🎤",
             "eventName": "Jackson Deen\nwith Mackenzie Carpenter",
-            "location": "Main Stage",
-            "startTime": "7:30 PM",
+            "location": "Bryden Motors Main Stage",
+            "startTime": "8:30 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         },
         {
@@ -255,7 +259,7 @@
             "group": 3,
             "glyph": "💰",
             "eventName": "Hefty 50/50 Drawing",
-            "location": "Main Stage",
+            "location": "Bryden Motors Main Stage",
             "startTime": "8:45 PM",
             "extra": "Need not be present to win"
         },
@@ -264,7 +268,8 @@
             "glyph": "🎶",
             "eventName": "Bree Morgan",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "2:30 PM",
+            "endTime": "4:00 PM",
             "extra": "No additional ticket required"
         },
         {
@@ -272,14 +277,15 @@
             "glyph": "🎶",
             "eventName": "Dirty Fishnet Stockings",
             "location": "Apex Beer Tent",
-            "startTime": "TBA",
+            "startTime": "4:30 PM",
+            "endTime": "6:30 PM",
             "extra": "No additional ticket required"
         },
         {
             "group": 3,
             "glyph": "🎤",
             "eventName": "Josh Turner\nwith Mo Pitney",
-            "location": "Main Stage",
+            "location": "Bryden Motors Main Stage",
             "startTime": "7:00 PM",
             "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         }

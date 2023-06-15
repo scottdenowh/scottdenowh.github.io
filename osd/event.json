@@ -73,6 +73,22 @@
         },
         {
             "group": 0,
+            "glyph": "🤩",
+            "eventName": "Meet & Greet – Lily Rose",
+            "location": "Merch Tent",
+            "startTime": "7:00 PM",
+            "extra": "Ticket and ID Required"
+        },
+        {
+            "group": 0,
+            "glyph": "🤩",
+            "eventName": "Meet & Greet – Mitchell Tenpenny",
+            "location": "Merch Tent",
+            "startTime": "7:00 PM",
+            "extra": "Ticket and ID Required"
+        },
+        {
+            "group": 0,
             "glyph": "🎶",
             "eventName": "Minimal",
             "location": "Apex Beer Tent",

@@ -2,6 +2,12 @@
 {
     "artists": [
         {
+            "title": "Josh Turner",
+            "subtitle": "Sunday, June 18, 2023",
+            "banner": "With Mo Pitney",
+            "imageUrl": "https://scottdenowh.github.io/osd/sunday2023.png"
+        },
+        {
             "title": "Marcus King",
             "subtitle": "Friday, June 16, 2023",
             "banner": "With Meg McRee",
@@ -12,12 +18,6 @@
             "subtitle": "Saturday, June 17, 2023",
             "banner": "With Mackenzie Carpenter",
             "imageUrl": "https://scottdenowh.github.io/osd/saturday2023.png"
-        },
-        {
-            "title": "Josh Turner",
-            "subtitle": "Sunday, June 18, 2023",
-            "banner": "With Mo Pitney",
-            "imageUrl": "https://scottdenowh.github.io/osd/sunday2023.png"
         },
         {
             "title": "Mitchell Tenpenny",
@@ -31,175 +31,10 @@
             "group": 0,
             "glyph": "👏",
             "eventName": "Gates Open",
-            "startTime": "4:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🍿",
-            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
-            "startTime": "4:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🍺",
-            "eventName": "Apex Beer Tent",
-            "startTime": "4:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🎡",
-            "eventName": "Midway by Skinners Amusements",
-            "startTime": "5:00 PM",
-            "endTime": "10:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "⭐️",
-            "eventName": "Sponsor’s VIP Tent",
-            "startTime": "5:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 0,
-            "glyph": "🤩",
-            "eventName": "Meet & Greet – Meg McRee",
-            "location": "Merch Tent",
-            "startTime": "7:15 PM",
-            "extra": "Ticket and ID Required"
-        },
-        {
-            "group": 0,
-            "glyph": "🤩",
-            "eventName": "Meet & Greet – Marcus King",
-            "location": "Merch Tent",
-            "startTime": "8:30 PM",
-            "extra": "Ticket and ID Required"
-        },
-
-        {
-            "group": 0,
-            "glyph": "🎶",
-            "eventName": "Blind Date",
-            "location": "Apex Beer Tent",
-            "startTime": "5:00 PM",
-            "endTime": "7:00 PM",
-            "extra": "No additional ticket required"
-        },
-        {
-            "group": 0,
-            "glyph": "🎤",
-            "eventName": "Marcus King\nwith Meg McRee",
-            "location": "Bryden Motors Main Stage",
-            "startTime": "8:00 PM",
-            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
-        },
-        {
-            "group": 1,
-            "glyph": "📋",
-            "eventName": "OSD5K Check-in",
-            "startTime": "7:00 AM"
-        },
-        {
-            "group": 1,
-            "glyph": "🏃‍♀️",
-            "eventName": "OSD5K Race Start",
-            "startTime": "8:00 AM"
-        },
-        {
-            "group": 1,
-            "glyph": "👏",
-            "eventName": "Gates Open",
-            "startTime": "12:30 PM"
-        },
-        {
-            "group": 1,
-            "glyph": "🇺🇸",
-            "eventName": "Parade",
-            "location": "Main Street, Rockton",
-            "startTime": "12:00 PM",
-            "extra": "No ticket required"
-        },
-        {
-            "group": 1,
-            "glyph": "🎡",
-            "eventName": "Midway by Skinners Amusements",
-            "startTime": "1:00 PM",
-            "endTime": "11:00 PM",
-            "extra": "1-5pm Wristbands All Rides, All Ages $25.00"
-        },
-        {
-            "group": 1,
-            "glyph": "🍿",
-            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
-            "startTime": "1:00 PM",
-            "endTime": "11:30 PM"
-        },
-        {
-            "group": 1,
-            "glyph": "🍺",
-            "eventName": "Apex Beer Tent",
-            "startTime": "1:00 PM",
-            "endTime": "11:00 PM"
-        },
-        {
-            "group": 1,
-            "glyph": "⭐️",
-            "eventName": "Sponsor’s VIP Tent",
-            "startTime": "5:00 PM",
-            "endTime": "11:00 PM"
-        },    
-        {
-            "group": 1,
-            "glyph": "🤩",
-            "eventName": "Meet & Greet – Mackenzie Carpenter",
-            "location": "Merch Tent",
-            "startTime": "7:15 PM",
-            "extra": "Ticket and ID Required"
-        },
-        {
-            "group": 1,
-            "glyph": "🤩",
-            "eventName": "Meet & Greet – Jackson Dean",
-            "location": "Merch Tent",
-            "startTime": "8:30 PM",
-            "extra": "Ticket and ID Required"
-        },
-        {
-            "group": 1,
-            "glyph": "🎶",
-            "eventName": "Lizzi Neal Band",
-            "location": "Apex Beer Tent",
-            "startTime": "3:00 PM",
-            "endTime": "5:00 PM",
-            "extra": "No additional ticket required"
-        },    
-        {
-            "group": 1,
-            "glyph": "🎶",
-            "eventName": "Rollin' Whiskey",
-            "location": "Apex Beer Tent",
-            "startTime": "6:00 PM",
-            "endTime": "8:00 PM",
-            "extra": "No additional ticket required"
-        },
-        {
-            "group": 1,
-            "glyph": "🎤",
-            "eventName": "Jackson Dean\nwith Mackenzie Carpenter",
-            "location": "Bryden Motors Main Stage",
-            "startTime": "8:00 PM",
-            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
-        },
-        {
-            "group": 2,
-            "glyph": "👏",
-            "eventName": "Gates Open",
             "startTime": "1:30 PM"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🎡",
             "eventName": "Midway by Skinners Amusements",
             "startTime": "2:00 PM",
@@ -207,28 +42,28 @@
             "extra": "Reduced Ticket Pricing (ex. 3🎟 → 2🎟)"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🍿",
             "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
             "startTime": "2:00 PM",
             "endTime": "9:30 PM"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🍺",
             "eventName": "Apex Beer Tent",
             "startTime": "2:00 PM",
             "endTime": "9:30 PM"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "⭐️",
             "eventName": "Sponsor’s VIP Tent",
             "startTime": "4:00 PM",
             "endTime": "10:00 PM"
         },    
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🤩",
             "eventName": "Meet & Greet – Mo Pitney",
             "location": "Merch Tent",
@@ -236,15 +71,15 @@
             "extra": "Ticket and ID Required"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🤩",
             "eventName": "Meet & Greet – Josh Turner",
             "location": "Merch Tent",
             "startTime": "7:30 PM",
-            "extra": "Ticket and ID Required"
+            "extra": "Ticket and ID Required\nNo Profanity, Derogatory, or Beer Apparel"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "💰",
             "eventName": "Hefty 50/50 Drawing",
             "location": "Bryden Motors Main Stage",
@@ -252,7 +87,7 @@
             "extra": "Need not be present to win"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🎶",
             "eventName": "Bree Morgan",
             "location": "Apex Beer Tent",
@@ -261,7 +96,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🎶",
             "eventName": "Dirty Fishnet Stockings",
             "location": "Apex Beer Tent",
@@ -270,7 +105,7 @@
             "extra": "No additional ticket required"
         },
         {
-            "group": 2,
+            "group": 0,
             "glyph": "🎤",
             "eventName": "Josh Turner\nwith Mo Pitney",
             "location": "Bryden Motors Main Stage",
@@ -279,8 +114,6 @@
         }
     ],
     "scheduleGroups": [
-        "Friday, June 16, 2023",
-        "Saturday, June 17, 2023",
         "Sunday, June 18, 2023"
     ]
 }

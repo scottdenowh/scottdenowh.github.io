@@ -3,21 +3,25 @@
     "artists": [
         {
             "title": "Chase Matthew",
+            "banner": "With Taylor Austin Dye",
             "subtitle": "Thursday, June 13, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/thursday2024.png"
         },
         {
             "title": "Nate Smith",
+            "banner": "With Preston James",
             "subtitle": "Friday, June 14, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/friday2024.png"
         },
         {
             "title": "Warren Zeiders",
+            "banner": "With Austin Williams",
             "subtitle": "Saturday, June 15, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/saturday2024.png"
         },
         {
             "title": "Parmalee",
+            "banner": "With Logan Crosby",
             "subtitle": "Sunday, June 16, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/sunday2024.png"
         }
@@ -25,12 +29,243 @@
     "schedules": [
         {
             "group": 0,
-            "glyph": "😃",
-            "eventName": "Coming soon!",
-            "startTime": ""
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "❤️",
+            "eventName": "Rock River Valley\nBlood Drive",
+            "location": "The American Legion, 221 W Main St, Rockton, IL",
+            "startTime": "1:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "Give Blood get a 4 Day General Admission Festival Pass, donate a pair of eyeglasses for a 2nd pass."
+        },
+        {
+            "group": 0,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "5:00 PM",
+            "endTime": "10:00 PM",
+            "extra": "5-9pm Wristbands All Rides, All Ages $30.00"
+        },
+        {
+            "group": 0,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 0,
+            "glyph": "🎶",
+            "eventName": "Lola Blu Band",
+            "location": "Apex Beer Tent",
+            "startTime": "5:00 PM",
+            "endTime": "7:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 0,
+            "glyph": "🎤",
+            "eventName": "Chase Mathhew\nWith Taylor Austin Dye",
+            "location": "Main Stage",
+            "startTime": "7:45 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 1,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "4:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "4:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "6:00 PM",
+            "endTime": "10:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 1,
+            "glyph": "🎶",
+            "eventName": "Blind Date",
+            "location": "Apex Beer Tent",
+            "startTime": "5:00 PM",
+            "endTime": "7:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 1,
+            "glyph": "🎤",
+            "eventName": "Nate Smith\nwith Preston James",
+            "location": "Main Stage",
+            "startTime": "8:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 2,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "12:30 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM",
+            "extra": "1-5pm Wristbands All Rides, All Ages $30.00"
+        },
+        {
+            "group": 2,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "1:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "5:00 PM",
+            "endTime": "11:00 PM"
+        },
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Dirt Road Rebels",
+            "location": "Apex Beer Tent",
+            "startTime": "3:00 PM",
+            "endTime": "5:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎶",
+            "eventName": "Rollin’ Whiskey",
+            "location": "Apex Beer Tent",
+            "startTime": "6:00 PM",
+            "endTime": "8:00 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 2,
+            "glyph": "🎤",
+            "eventName": "Warren Zeiders\nwith Austin Williams",
+            "location": "Main Stage",
+            "startTime": "8:15 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
+        },
+        {
+            "group": 3,
+            "glyph": "👏",
+            "eventName": "Gates Open",
+            "startTime": "1:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🎡",
+            "eventName": "Midway by Skinners Amusements",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM",
+            "extra": "Reduced Ticket Pricing (ex. 3🎟 → 2🎟)"
+        },
+        {
+            "group": 3,
+            "glyph": "🍿",
+            "eventName": "Festival Vendors\nInformation Booth\n50/50 Raffle Tickets\nFood Booths",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🍺",
+            "eventName": "Apex Beer Tent",
+            "startTime": "2:00 PM",
+            "endTime": "9:30 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "⭐️",
+            "eventName": "Sponsor’s VIP Tent",
+            "startTime": "4:00 PM",
+            "endTime": "10:00 PM"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "Carson Hall",
+            "location": "Apex Beer Tent",
+            "startTime": "2:00 PM",
+            "endTime": "3:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎶",
+            "eventName": "Hanks Neighbors",
+            "location": "Apex Beer Tent",
+            "startTime": "4:30 PM",
+            "endTime": "6:30 PM",
+            "extra": "No additional ticket required"
+        },
+        {
+            "group": 3,
+            "glyph": "🎤",
+            "eventName": "PARMALEE\nwith Logan Crosby",
+            "location": "Main Stage",
+            "startTime": "7:00 PM",
+            "extra": "Additional Concert Ticket Required.\nGates open approx 1 hour prior"
         }
     ],
     "scheduleGroups": [
-        " "
+        "Thursday, June 13, 2024",
+        "Friday, June 14, 2024",
+        "Saturday, June 15, 2024",
+        "Sunday, June 16, 2024"
     ]
 }

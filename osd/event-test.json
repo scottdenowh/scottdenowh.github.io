@@ -3,21 +3,25 @@
     "artists": [
         {
             "title": "Chase Matthew",
+            "banner": "With Taylor Austin Dye",
             "subtitle": "Thursday, June 13, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/thursday2024.png"
         },
         {
             "title": "Nate Smith",
+            "banner": "With Preston James",
             "subtitle": "Friday, June 14, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/friday2024.png"
         },
         {
             "title": "Warren Zeiders",
+            "banner": "With Austin Williams",
             "subtitle": "Saturday, June 15, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/saturday2024.png"
         },
         {
             "title": "Parmalee",
+            "banner": "With Logan Crosby",
             "subtitle": "Sunday, June 16, 2024",
             "imageUrl": "https://scottdenowh.github.io/osd/sunday2024.png"
         }

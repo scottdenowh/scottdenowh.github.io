@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Artists</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 112px; 
+        }
+        .main-nav { z-index: 1030; }
+        .save-bar {
+            position: fixed;
+            top: 56px; 
+            left: 0; right: 0;
+            background-color: #f8f9fa; 
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1020; 
+            display: flex;
+            justify-content: space-between; /* Align Add and Save buttons */
+            align-items: center;
+        }
+        .artist-entry {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: grab; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .artist-entry img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .artist-info {
+            flex-grow: 1;
+        }
+        .artist-actions button, .artist-actions .dropdown button {
+            margin-left: 5px;
+        }
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #c0e0ff;
+        }
+        #artist-list-container {
+            min-height: 100px; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main-nav">
+        <a class="navbar-brand" href="#">Admin Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="artists.html">Artists <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="schedule.html">Schedule</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" id="logout-button">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Fixed Save Bar -->
+    <div class="save-bar">
+        <button class="btn btn-primary" id="add-new-artist-button">+ Add New Artist</button>
+        <button class="btn btn-success" id="save-all-changes-button">Save All Changes to Server</button>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Manage Artists</h2>
+        <div id="artist-list-container">
+            <!-- Artist data will be loaded here -->
+            <p>Loading artist data...</p>
+        </div>
+    </div>
+
+    <!-- Add/Edit Artist Modal -->
+    <div class="modal fade" id="editArtistModal" tabindex="-1" aria-labelledby="editArtistModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editArtistModalLabel">Edit Artist</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit-artist-original-index">
+                    <div class="form-group">
+                        <label for="edit-artist-title">Title</label>
+                        <input type="text" class="form-control" id="edit-artist-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-artist-banner">Banner Text</label>
+                        <input type="text" class="form-control" id="edit-artist-banner">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-artist-subtitle">Subtitle</label>
+                        <input type="text" class="form-control" id="edit-artist-subtitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-artist-imageUrl">Image URL</label>
+                        <input type="text" class="form-control" id="edit-artist-imageUrl" placeholder="Enter HTTPS URL or leave blank to upload new image">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-artist-imageFile">Upload New Image (Optional)</label>
+                        <input type="file" class="form-control-file" id="edit-artist-imageFile" accept="image/png, image/jpeg, image/webp">
+                        <small class="form-text text-muted">If you upload a new image, it will replace the existing Image URL upon saving.</small>
+                         <img id="edit-artist-image-preview" src="#" alt="Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px; display: none;"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-artist-changes-button">Save Artist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script> <!-- Firebase Storage SDK -->
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBAqJuLiFk1jH3Zzzaasq9gob98H3vWiTk",
+            authDomain: "osd-admin-portal.firebaseapp.com",
+            projectId: "osd-admin-portal",
+            storageBucket: "osd-admin-portal.firebasestorage.app", // Ensure this is correct
+            messagingSenderId: "192339428008",
+            appId: "1:192339428008:web:6cb247be2c38a521b9789d",
+            measurementId: "G-9NDRFJ0J8H"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const storage = firebase.storage(); // Initialize Firebase Storage
+        let currentScheduleData = null; // This will hold the entire object from Firestore {artists: [], schedules: [], scheduleGroups: []}
+        let sortableArtists = null;
+
+        auth.onAuthStateChanged(function(user) {
+            if (!user) { window.location.href = "login.html"; }
+        });
+
+        document.getElementById('logout-button').addEventListener('click', () => {
+            auth.signOut().then(() => { window.location.href = "login.html"; }).catch(console.error);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchScheduleAndArtistData();
+            document.getElementById('add-new-artist-button').addEventListener('click', () => openEditArtistModal(null));
+            document.getElementById('save-artist-changes-button').addEventListener('click', saveArtistChanges);
+            document.getElementById('save-all-changes-button').addEventListener('click', saveAllChangesToServer);
+            document.getElementById('edit-artist-imageFile').addEventListener('change', previewImage);
+        });
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            const imagePreview = document.getElementById('edit-artist-image-preview');
+            reader.onload = function(){
+                imagePreview.src = reader.result;
+                imagePreview.style.display = 'block';
+            }
+            if(event.target.files[0]){
+                reader.readAsDataURL(event.target.files[0]);
+            } else {
+                imagePreview.src = '#';
+                imagePreview.style.display = 'none';
+            }
+        }
+
+        function fetchScheduleAndArtistData() {
+            const artistListContainer = document.getElementById('artist-list-container');
+            artistListContainer.innerHTML = '<p>Loading data...</p>';
+            const cloudFunctionUrl = 'https://us-central1-osd-admin-portal.cloudfunctions.net/getScheduleData';
+
+            fetch(cloudFunctionUrl)
+                .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
+                .then(data => {
+                    currentScheduleData = data; 
+                    if (!currentScheduleData.artists) currentScheduleData.artists = []; // Ensure artists array exists
+                    renderArtists(currentScheduleData.artists);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    artistListContainer.innerHTML = '<p>Error loading artist data.</p>';
+                });
+        }
+
+        function renderArtists(artists) {
+            const artistListContainer = document.getElementById('artist-list-container');
+            artistListContainer.innerHTML = ''; // Clear previous entries
+
+            if (!artists || artists.length === 0) {
+                artistListContainer.innerHTML = '<p>No artists found. Click "+ Add New Artist" to begin.</p>';
+                return;
+            }
+
+            artists.forEach((artist, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('artist-entry');
+                entryDiv.setAttribute('data-original-artist-index', index); // Store original index for reordering
+
+                let imgHtml = artist.imageUrl ? `<img src="${artist.imageUrl}" alt="${artist.title || 'Artist'}">` : '<div style="width:100px; height:100px; background:#eee; display:flex; align-items:center; justify-content:center; margin-right:15px; border-radius:4px;">No Image</div>';
+
+                entryDiv.innerHTML = `
+                    ${imgHtml}
+                    <div class="artist-info">
+                        <h5>${artist.title || 'N/A'}</h5>
+                        <p>${artist.banner || ''}</p>
+                        <small class="text-muted">${artist.subtitle || ''}</small>
+                    </div>
+                    <div class="artist-actions">
+                        <button class="btn btn-sm btn-outline-primary edit-artist-btn" data-artist-index="${index}">Edit</button>
+                        <button class="btn btn-sm btn-outline-danger delete-artist-btn" data-artist-index="${index}">Delete</button>
+                    </div>
+                `;
+                artistListContainer.appendChild(entryDiv);
+            });
+
+            // Add event listeners for edit and delete buttons
+            document.querySelectorAll('.edit-artist-btn').forEach(btn => {
+                btn.addEventListener('click', function() { openEditArtistModal(this.getAttribute('data-artist-index')); });
+            });
+            document.querySelectorAll('.delete-artist-btn').forEach(btn => {
+                btn.addEventListener('click', function() { deleteArtist(this.getAttribute('data-artist-index')); });
+            });
+
+            // Initialize SortableJS
+            if (sortableArtists) sortableArtists.destroy(); // Destroy previous instance if any
+            sortableArtists = new Sortable(artistListContainer, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                onEnd: function(evt) {
+                    const itemEl = evt.item; // The dragged DOM element
+                    const oldIndex = parseInt(itemEl.getAttribute('data-original-artist-index'));
+                    const newIndexInView = evt.newDraggableIndex; // Index in the displayed list
+
+                    // Reorder currentScheduleData.artists based on the visual order
+                    const reorderedArtists = Array.from(artistListContainer.children).map(child => {
+                        const originalIdx = parseInt(child.getAttribute('data-original-artist-index'));
+                        return currentScheduleData.artists.find((a, i) => i === originalIdx); // Find by original index
+                    });
+                    currentScheduleData.artists = reorderedArtists.filter(Boolean);
+                    renderArtists(currentScheduleData.artists); // Re-render to update original-artist-index attributes
+                }
+            });
+        }
+
+        function openEditArtistModal(artistIndex) {
+            const modalLabel = document.getElementById('editArtistModalLabel');
+            const originalIndexInput = document.getElementById('edit-artist-original-index');
+            const imagePreview = document.getElementById('edit-artist-image-preview');
+
+            document.getElementById('edit-artist-title').value = '';
+            document.getElementById('edit-artist-banner').value = '';
+            document.getElementById('edit-artist-subtitle').value = '';
+            document.getElementById('edit-artist-imageUrl').value = '';
+            document.getElementById('edit-artist-imageFile').value = null; // Clear file input
+            imagePreview.style.display = 'none';
+            imagePreview.src = '#';
+
+            if (artistIndex !== null && typeof artistIndex !== 'undefined' && currentScheduleData.artists[artistIndex]) {
+                modalLabel.textContent = 'Edit Artist';
+                originalIndexInput.value = artistIndex;
+                const artist = currentScheduleData.artists[artistIndex];
+                document.getElementById('edit-artist-title').value = artist.title || '';
+                document.getElementById('edit-artist-banner').value = artist.banner || '';
+                document.getElementById('edit-artist-subtitle').value = artist.subtitle || '';
+                document.getElementById('edit-artist-imageUrl').value = artist.imageUrl || '';
+                if (artist.imageUrl) {
+                    imagePreview.src = artist.imageUrl;
+                    imagePreview.style.display = 'block';
+                }
+            } else {
+                modalLabel.textContent = 'Add New Artist';
+                originalIndexInput.value = ''; // Indicates new artist
+            }
+            $('#editArtistModal').modal('show');
+        }
+
+        async function saveArtistChanges() {
+            const originalIndex = document.getElementById('edit-artist-original-index').value;
+            const title = document.getElementById('edit-artist-title').value;
+            const banner = document.getElementById('edit-artist-banner').value;
+            const subtitle = document.getElementById('edit-artist-subtitle').value;
+            let imageUrl = document.getElementById('edit-artist-imageUrl').value;
+            const imageFile = document.getElementById('edit-artist-imageFile').files[0];
+
+            if (!title) { alert('Artist title is required.'); return; }
+
+            const saveButton = document.getElementById('save-artist-changes-button');
+            saveButton.disabled = true;
+            saveButton.textContent = 'Saving...';
+
+            try {
+                if (imageFile) {
+                    // Upload new image to Firebase Storage
+                    const imageName = `${Date.now()}_${imageFile.name}`.replace(/[^a-zA-Z0-9._-]/g, '_'); // Sanitize name
+                    const storageRef = storage.ref(`artist_images/${imageName}`);
+                    const uploadTask = await storageRef.put(imageFile);
+                    imageUrl = await uploadTask.ref.getDownloadURL();
+                    console.log('File available at', imageUrl);
+                }
+
+                const artistData = { title, banner, subtitle, imageUrl };
+
+                if (originalIndex !== null && originalIndex !== '') {
+                    // Editing existing artist
+                    currentScheduleData.artists[parseInt(originalIndex)] = artistData;
+                } else {
+                    // Adding new artist
+                    currentScheduleData.artists.push(artistData);
+                }
+                renderArtists(currentScheduleData.artists);
+                $('#editArtistModal').modal('hide');
+            } catch (error) {
+                console.error("Error saving artist (or uploading image):", error);
+                alert("Error saving artist: " + error.message);
+            } finally {
+                saveButton.disabled = false;
+                saveButton.textContent = 'Save Artist';
+            }
+        }
+
+        function deleteArtist(artistIndex) {
+            if (artistIndex === null || typeof artistIndex === 'undefined' || !currentScheduleData.artists[artistIndex]) return;
+            const artist = currentScheduleData.artists[artistIndex];
+            if (confirm(`Are you sure you want to delete "${artist.title}"?`)) {
+                currentScheduleData.artists.splice(artistIndex, 1);
+                renderArtists(currentScheduleData.artists);
+            }
+        }
+
+        async function saveAllChangesToServer() {
+            if (!currentScheduleData) { alert('No data to save.'); return; }
+            
+            const saveAllButton = document.getElementById('save-all-changes-button');
+            saveAllButton.disabled = true;
+            saveAllButton.textContent = 'Saving to Server...';
+
+            const updateFunctionUrl = 'https://us-central1-osd-admin-portal.cloudfunctions.net/updateScheduleData';
+            try {
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('You are not logged in. Please log in again.');
+                    window.location.href = "login.html";
+                    return;
+                }
+                const idToken = await user.getIdToken(true);
+                const response = await fetch(updateFunctionUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + idToken
+                    },
+                    body: JSON.stringify(currentScheduleData) // Send the whole scheduleData object
+                });
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
+                }
+                const result = await response.json();
+                alert(result.message || 'All changes saved successfully!');
+            } catch (error) {
+                console.error('Error saving all changes:', error);
+                alert(`Error saving changes: ${error.message}`);
+            } finally {
+                saveAllButton.disabled = false;
+                saveAllButton.textContent = 'Save All Changes to Server';
+            }
+        }
+    </script>
+</body>
+</html>

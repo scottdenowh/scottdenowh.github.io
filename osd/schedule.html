@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Schedule</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 112px; 
+        }
+        .main-nav {
+            z-index: 1030;
+        }
+        .save-bar {
+            position: fixed;
+            top: 56px; 
+            left: 0;
+            right: 0;
+            background-color: #f8f9fa; 
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1020; 
+            display: flex;
+            justify-content: flex-end; 
+        }
+        .schedule-group {
+            margin-bottom: 30px;
+        }
+        .schedule-entry {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: grab; 
+            position: relative; 
+        }
+        .schedule-entry p {
+            margin-bottom: 0.5rem;
+        }
+        .group-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .group-header h3 {
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #c0e0ff;
+        }
+        .schedule-entries-container {
+            min-height: 50px; 
+            border: 1px dashed #ccc; 
+            padding: 10px;
+        }
+        .actions-dropdown .dropdown-menu {
+            min-width: auto;
+        }
+        .direct-edit-btn {
+            margin-left: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main-nav">
+        <a class="navbar-brand" href="#">Admin Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="artists.html">Artists</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="schedule.html">Schedule <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" id="logout-button">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Fixed Save Bar -->
+    <div class="save-bar">
+        <button class="btn btn-success" id="save-all-changes-button">Save All Changes to Server</button>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Manage Schedule</h2>
+        <div id="schedule-list">
+            <p>Loading schedule data...</p>
+        </div>
+    </div>
+
+    <!-- Edit/Add Schedule Entry Modal -->
+    <div class="modal fade" id="editScheduleModal" tabindex="-1" aria-labelledby="editScheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editScheduleModalLabel">Edit Schedule Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit-entry-index">
+                    <input type="hidden" id="edit-target-group-index"> <!-- For new entries -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-eventName">Event Name</label>
+                            <input type="text" class="form-control" id="edit-eventName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-glyph">Glyph</label>
+                            <input type="text" class="form-control" id="edit-glyph">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-startTime">Start Time</label>
+                            <input type="text" class="form-control" id="edit-startTime" placeholder="e.g., 10:00 AM">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-endTime">End Time</label>
+                            <input type="text" class="form-control" id="edit-endTime" placeholder="e.g., 11:00 AM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-location">Location</label>
+                        <input type="text" class="form-control" id="edit-location">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-extra">Extra Info</label>
+                        <input type="text" class="form-control" id="edit-extra">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-entry-changes-button">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Group Name Modal -->
+    <div class="modal fade" id="editGroupNameModal" tabindex="-1" aria-labelledby="editGroupNameModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editGroupNameModalLabel">Edit Group Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit-group-index">
+                    <div class="form-group">
+                        <label for="edit-groupName">Group Name</label>
+                        <input type="text" class="form-control" id="edit-groupName">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-group-name-button">Save Group Name</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy to Group Modal -->
+    <div class="modal fade" id="copyToGroupModal" tabindex="-1" aria-labelledby="copyToGroupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="copyToGroupModalLabel">Copy Entry to Group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="copy-entry-original-index">
+                    <p>Copy "<strong id="copy-entry-name-placeholder"></strong>" to which group?</p>
+                    <div class="form-group">
+                        <label for="copy-target-group">Target Group</label>
+                        <select class="form-control" id="copy-target-group">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="execute-copy-button">Copy to Group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBAqJuLiFk1jH3Zzzaasq9gob98H3vWiTk",
+            authDomain: "osd-admin-portal.firebaseapp.com",
+            projectId: "osd-admin-portal",
+            storageBucket: "osd-admin-portal.firebasestorage.app",
+            messagingSenderId: "192339428008",
+            appId: "1:192339428008:web:6cb247be2c38a521b9789d",
+            measurementId: "G-9NDRFJ0J8H"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        let currentScheduleData = null;
+
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        document.getElementById('logout-button').addEventListener('click', () => {
+            auth.signOut().then(() => { window.location.href = "login.html"; }).catch(console.error);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchScheduleData();
+            const saveEntryButton = document.getElementById('save-entry-changes-button');
+            if (saveEntryButton) saveEntryButton.addEventListener('click', saveEntryChanges);
+            
+            const saveGroupNameButton = document.getElementById('save-group-name-button');
+            if (saveGroupNameButton) saveGroupNameButton.addEventListener('click', saveGroupName);
+            
+            const saveAllButton = document.getElementById('save-all-changes-button');
+            if (saveAllButton) saveAllButton.addEventListener('click', saveAllChangesToServer);
+
+            const executeCopyButton = document.getElementById('execute-copy-button');
+            if (executeCopyButton) executeCopyButton.addEventListener('click', executeCopyEntryToGroup);
+        });
+
+        function fetchScheduleData() {
+            const scheduleListDiv = document.getElementById('schedule-list');
+            scheduleListDiv.innerHTML = 'Loading schedule data...';
+            const cloudFunctionUrl = 'https://us-central1-osd-admin-portal.cloudfunctions.net/getScheduleData';
+
+            fetch(cloudFunctionUrl)
+                .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
+                .then(data => { currentScheduleData = data; renderSchedule(currentScheduleData); })
+                .catch(error => {
+                    console.error('Error fetching schedule data:', error);
+                    scheduleListDiv.innerHTML = '<p>Error loading schedule data.</p>';
+                });
+        }
+
+        function renderSchedule(scheduleData) {
+            const scheduleListDiv = document.getElementById('schedule-list');
+            scheduleListDiv.innerHTML = '';
+
+            if (!scheduleData || !scheduleData.schedules || !scheduleData.scheduleGroups) {
+                scheduleListDiv.innerHTML = '<p>Could not load schedule data or data format is incorrect.</p>';
+                return;
+            }
+            const schedules = scheduleData.schedules;
+            const scheduleGroups = scheduleData.scheduleGroups;
+
+            scheduleGroups.forEach((groupName, groupIndex) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.classList.add('schedule-group');
+                groupDiv.setAttribute('data-group-id', groupIndex);
+                const groupHeaderDiv = document.createElement('div');
+                groupHeaderDiv.classList.add('group-header');
+                const groupTitle = document.createElement('h3');
+                groupTitle.textContent = groupName;
+                groupHeaderDiv.appendChild(groupTitle);
+                
+                const editGroupNameBtn = document.createElement('button');
+                editGroupNameBtn.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'ml-2', 'edit-group-name-btn');
+                editGroupNameBtn.textContent = 'Edit Name';
+                editGroupNameBtn.setAttribute('data-group-index', groupIndex);
+                groupHeaderDiv.appendChild(editGroupNameBtn);
+
+                const addNewEntryBtn = document.createElement('button');
+                addNewEntryBtn.classList.add('btn', 'btn-sm', 'btn-info', 'ml-2', 'add-new-entry-btn');
+                addNewEntryBtn.textContent = '+ Add Entry';
+                addNewEntryBtn.setAttribute('data-group-index', groupIndex);
+                groupHeaderDiv.appendChild(addNewEntryBtn);
+                
+                groupDiv.appendChild(groupHeaderDiv);
+                const entriesContainer = document.createElement('div');
+                entriesContainer.classList.add('schedule-entries-container');
+                entriesContainer.setAttribute('data-group-index', groupIndex);
+                groupDiv.appendChild(entriesContainer);
+                const groupSchedule = schedules.filter(entry => entry.group === groupIndex);
+                if (groupSchedule.length === 0) {
+                    entriesContainer.innerHTML = '<p>No entries for this day.</p>'; // Updated message
+                } else {
+                    groupSchedule.forEach(entry => {
+                        const originalEntryIndex = schedules.findIndex(s => s === entry);
+                        const entryDiv = document.createElement('div');
+                        entryDiv.classList.add('schedule-entry');
+                        entryDiv.setAttribute('data-original-index', originalEntryIndex);
+                        let entryHtml = `
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p><strong>${entry.eventName || ''}</strong></p>
+                                    ${entry.glyph ? `<p>Glyph: ${entry.glyph}</p>` : ''}
+                                    <p>Time: ${entry.startTime || ''}${entry.endTime ? ' - ' + entry.endTime : ''}</p>
+                                    ${entry.location ? `<p>Location: ${entry.location}</p>` : ''}
+                                    ${entry.extra ? `<p>Extra: ${entry.extra}</p>` : ''}
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary direct-edit-btn edit-btn" type="button" data-index="${originalEntryIndex}">Edit</button>
+                                    <div class="dropdown actions-dropdown d-inline-block ml-1">
+                                        <button class="btn btn-sm btn-light" type="button" id="actionsMenuButton-${originalEntryIndex}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            &#8942;
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionsMenuButton-${originalEntryIndex}">
+                                            <button class="dropdown-item edit-btn" type="button" data-index="${originalEntryIndex}">Edit Entry</button>
+                                            <button class="dropdown-item duplicate-btn" type="button" data-index="${originalEntryIndex}">Duplicate</button>
+                                            <button class="dropdown-item copy-to-group-btn" type="button" data-index="${originalEntryIndex}">Copy to Group...</button>
+                                            <button class="dropdown-item delete-btn" type="button" data-index="${originalEntryIndex}">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        entryDiv.innerHTML = entryHtml;
+                        entriesContainer.appendChild(entryDiv);
+                    });
+                }
+                scheduleListDiv.appendChild(groupDiv);
+                new Sortable(entriesContainer, {
+                    group: `group-${groupIndex}`,
+                    animation: 150,
+                    ghostClass: 'sortable-ghost',
+                    onEnd: function (evt) {
+                        const toList = evt.to;
+                        const fromList = evt.from;
+                        if (toList !== fromList) {
+                            renderSchedule(currentScheduleData); return;
+                        }
+                        const targetGroupIndex = parseInt(toList.getAttribute('data-group-index'));
+                        const currentGroupItemsOrdered = Array.from(toList.children).map(child => {
+                            const originalIdx = parseInt(child.getAttribute('data-original-index'));
+                            return currentScheduleData.schedules[originalIdx];
+                        }).filter(Boolean);
+                        const otherGroupItems = currentScheduleData.schedules.filter(s => s.group !== targetGroupIndex);
+                        currentScheduleData.schedules = [...otherGroupItems, ...currentGroupItemsOrdered];
+                        renderSchedule(currentScheduleData);
+                    }
+                });
+            });
+            attachActionMenuListeners(); 
+        }
+
+        function attachActionMenuListeners() {
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.removeEventListener('click', openEditModalHandler);
+                button.addEventListener('click', openEditModalHandler);
+            });
+            document.querySelectorAll('.edit-group-name-btn').forEach(button => {
+                button.removeEventListener('click', openEditGroupNameModalHandler);
+                button.addEventListener('click', openEditGroupNameModalHandler);
+            });
+            document.querySelectorAll('.add-new-entry-btn').forEach(button => {
+                button.removeEventListener('click', addNewEntryHandler);
+                button.addEventListener('click', addNewEntryHandler);
+            });
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.removeEventListener('click', deleteEntryHandler);
+                button.addEventListener('click', deleteEntryHandler);
+            });
+            document.querySelectorAll('.duplicate-btn').forEach(button => {
+                button.removeEventListener('click', duplicateEntryHandler);
+                button.addEventListener('click', duplicateEntryHandler);
+            });
+            document.querySelectorAll('.copy-to-group-btn').forEach(button => {
+                button.removeEventListener('click', openCopyToGroupModalHandler);
+                button.addEventListener('click', openCopyToGroupModalHandler);
+            });
+        }
+        function openEditModalHandler() { openEditModal(this.getAttribute('data-index')); }
+        function openEditGroupNameModalHandler() { openEditGroupNameModal(this.getAttribute('data-group-index')); }
+        function addNewEntryHandler() { openEditModal(null, this.getAttribute('data-group-index')); }
+        function deleteEntryHandler() { deleteEntry(this.getAttribute('data-index')); }
+        function duplicateEntryHandler() { duplicateEntry(this.getAttribute('data-index')); }
+        function openCopyToGroupModalHandler() { openCopyToGroupModal(this.getAttribute('data-index')); }
+
+        function openEditModal(entryIndex, targetGroupIndexForNew = null) { 
+            const modalLabel = document.getElementById('editScheduleModalLabel');
+            const entryIndexInput = document.getElementById('edit-entry-index');
+            const targetGroupIndexInput = document.getElementById('edit-target-group-index');
+
+            // Reset form fields
+            document.getElementById('edit-eventName').value = '';
+            document.getElementById('edit-glyph').value = '';
+            document.getElementById('edit-startTime').value = '';
+            document.getElementById('edit-endTime').value = '';
+            document.getElementById('edit-location').value = '';
+            document.getElementById('edit-extra').value = '';
+
+            if (entryIndex !== null && typeof entryIndex !== 'undefined') { // Editing existing entry
+                modalLabel.textContent = 'Edit Schedule Entry';
+                entryIndexInput.value = entryIndex;
+                targetGroupIndexInput.value = ''; // Not needed for edit
+                const entry = currentScheduleData.schedules[entryIndex];
+                if (!entry) return; // Should not happen if data-index is correct
+                document.getElementById('edit-eventName').value = entry.eventName || '';
+                document.getElementById('edit-glyph').value = entry.glyph || '';
+                document.getElementById('edit-startTime').value = entry.startTime || '';
+                document.getElementById('edit-endTime').value = entry.endTime || '';
+                document.getElementById('edit-location').value = entry.location || '';
+                document.getElementById('edit-extra').value = entry.extra || '';
+            } else { // Adding new entry
+                modalLabel.textContent = 'Add New Schedule Entry';
+                entryIndexInput.value = ''; // Mark as new entry
+                targetGroupIndexInput.value = targetGroupIndexForNew;
+            }
+            $('#editScheduleModal').modal('show');
+        }
+
+        function saveEntryChanges() { 
+            const entryIndex = document.getElementById('edit-entry-index').value;
+            const targetGroupIndexForNew = document.getElementById('edit-target-group-index').value;
+
+            const newEntryData = {
+                eventName: document.getElementById('edit-eventName').value,
+                glyph: document.getElementById('edit-glyph').value,
+                startTime: document.getElementById('edit-startTime').value,
+                endTime: document.getElementById('edit-endTime').value,
+                location: document.getElementById('edit-location').value,
+                extra: document.getElementById('edit-extra').value,
+                group: -1 // Placeholder, will be set below
+            };
+
+            if (entryIndex !== null && entryIndex !== '') { // Editing existing entry
+                if (!currentScheduleData || !currentScheduleData.schedules[entryIndex]) return;
+                currentScheduleData.schedules[entryIndex] = {
+                    ...currentScheduleData.schedules[entryIndex], // Preserve other potential fields and original group
+                    ...newEntryData,
+                    group: currentScheduleData.schedules[entryIndex].group // Ensure group is not overwritten by placeholder
+                };
+            } else { // Adding new entry
+                if (targetGroupIndexForNew === null || typeof targetGroupIndexForNew === 'undefined') {
+                    console.error("Target group index is missing for new entry.");
+                    return;
+                }
+                newEntryData.group = parseInt(targetGroupIndexForNew);
+                if (!currentScheduleData) currentScheduleData = { schedules: [], scheduleGroups: [] }; // Initialize if empty
+                currentScheduleData.schedules.push(newEntryData);
+            }
+            renderSchedule(currentScheduleData); 
+            $('#editScheduleModal').modal('hide');
+         }
+
+        function openEditGroupNameModal(groupIndex) { 
+            if (!currentScheduleData || typeof currentScheduleData.scheduleGroups[groupIndex] === 'undefined') return;
+            document.getElementById('edit-group-index').value = groupIndex;
+            document.getElementById('edit-groupName').value = currentScheduleData.scheduleGroups[groupIndex];
+            $('#editGroupNameModal').modal('show');
+        }
+        function saveGroupName() { 
+            const groupIndex = document.getElementById('edit-group-index').value;
+            if (!currentScheduleData || typeof currentScheduleData.scheduleGroups[groupIndex] === 'undefined') return;
+            currentScheduleData.scheduleGroups[groupIndex] = document.getElementById('edit-groupName').value;
+            renderSchedule(currentScheduleData);
+            $('#editGroupNameModal').modal('hide');
+        }
+        function deleteEntry(originalEntryIndex) { 
+            if (!currentScheduleData || !currentScheduleData.schedules[originalEntryIndex]) return;
+            if (confirm(`Are you sure you want to delete "${currentScheduleData.schedules[originalEntryIndex].eventName}"?`)) {
+                currentScheduleData.schedules.splice(originalEntryIndex, 1);
+                renderSchedule(currentScheduleData);
+            }
+        }
+        function duplicateEntry(originalEntryIndex) { 
+            if (!currentScheduleData || !currentScheduleData.schedules[originalEntryIndex]) return;
+            const originalEntry = currentScheduleData.schedules[originalEntryIndex];
+            const newEntry = JSON.parse(JSON.stringify(originalEntry)); 
+            newEntry.eventName = `${originalEntry.eventName} (Copy)`;
+            currentScheduleData.schedules.push(newEntry);
+            renderSchedule(currentScheduleData);
+        }
+        function openCopyToGroupModal(originalEntryIndex) { 
+            if (!currentScheduleData || !currentScheduleData.schedules[originalEntryIndex]) return;
+            const entryToCopy = currentScheduleData.schedules[originalEntryIndex];
+            document.getElementById('copy-entry-original-index').value = originalEntryIndex;
+            document.getElementById('copy-entry-name-placeholder').textContent = entryToCopy.eventName;
+            const targetGroupSelect = document.getElementById('copy-target-group');
+            targetGroupSelect.innerHTML = ''; 
+            currentScheduleData.scheduleGroups.forEach((groupName, groupIndex) => {
+                if (groupIndex !== entryToCopy.group) { 
+                    const option = document.createElement('option');
+                    option.value = groupIndex;
+                    option.textContent = groupName;
+                    targetGroupSelect.appendChild(option);
+                }
+            });
+            $('#copyToGroupModal').modal('show');
+        }
+        function executeCopyEntryToGroup() { 
+            const originalEntryIndex = document.getElementById('copy-entry-original-index').value;
+            const targetGroupIndex = parseInt(document.getElementById('copy-target-group').value);
+            if (!currentScheduleData || !currentScheduleData.schedules[originalEntryIndex] || isNaN(targetGroupIndex)) return;
+            const originalEntry = currentScheduleData.schedules[originalEntryIndex];
+            const newEntry = JSON.parse(JSON.stringify(originalEntry));
+            newEntry.group = targetGroupIndex;
+            currentScheduleData.schedules.push(newEntry);
+            renderSchedule(currentScheduleData);
+            $('#copyToGroupModal').modal('hide');
+        }
+
+        async function saveAllChangesToServer() {
+            if (!currentScheduleData) {
+                alert('No data to save.');
+                return;
+            }
+            const saveButton = document.getElementById('save-all-changes-button');
+            saveButton.disabled = true;
+            saveButton.textContent = 'Saving...';
+            const updateFunctionUrl = 'https://us-central1-osd-admin-portal.cloudfunctions.net/updateScheduleData';
+            try {
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('You are not logged in. Please log in again.');
+                    saveButton.disabled = false;
+                    saveButton.textContent = 'Save All Changes to Server';
+                    window.location.href = "login.html";
+                    return;
+                }
+                const idToken = await user.getIdToken(true);
+                const response = await fetch(updateFunctionUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + idToken
+                    },
+                    body: JSON.stringify(currentScheduleData)
+                });
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                    throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
+                }
+                const result = await response.json();
+                alert(result.message || 'Changes saved successfully!');
+            } catch (error) {
+                console.error('Error saving schedule data:', error);
+                alert(`Error saving changes: ${error.message}`);
+            } finally {
+                saveButton.disabled = false;
+                saveButton.textContent = 'Save All Changes to Server';
+            }
+        }
+    </script>
+</body>
+</html>

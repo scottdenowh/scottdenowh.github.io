@@ -5,22 +5,116 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Install OSD App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 300px;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .download-section {
+            margin: 30px 0;
+        }
+
+        .store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .store-button {
+            transition: transform 0.2s ease;
+            width: 200px;
+            display: block;
+        }
+
+        .store-button:hover {
+            transform: scale(1.05);
+        }
+
+        .store-button img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .schedule-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            color: #666;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #ddd;
+        }
+
+        .schedule-link:hover {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        @media (min-width: 768px) {
+            .store-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2 style="font-family: sans-serif;">Download the OSD app for free!</h2>
-    <p>
-        <a href="itms-apps://itunes.apple.com/app/1362365028" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px; padding: 20px;">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1521676800&h=ed0d9367d2d99e21cc53fc2f7edf36d9" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;">
-        </a>
-    </p>
-    <p>
-        <a href='https://play.google.com/store/apps/details?id=com.scottdenowh.osd3' style="display: inline-block; overflow: hidden; border-radius: 13px; width: 300px;">
-            <img style="width: 300px;" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
-        </a>
-    </p>
-    <p>
-        You may also check out this mobile-friendly schedule from your device.
-    </p>
-    <a href="https://www.oldsettlersdays.com/mobile/">OSD Online Schedule</a>
+    <div class="container">
+        <img src="https://firebasestorage.googleapis.com/v0/b/osd-admin-portal.firebasestorage.app/o/artist_images%2FOSD_Logo_2025_updated_text_blue.png?alt=media&token=01f9f8f1-941a-425c-aa7f-734a65b5f5bc" alt="OSD Logo" class="logo">
+        
+        <h1>Download the OSD App</h1>
+        <p>Get the official Old Settlers Days app for the best festival experience!</p>
+
+        <div class="store-buttons">
+            <a href="itms-apps://itunes.apple.com/app/1362365028" class="store-button">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1521676800&h=ed0d9367d2d99e21cc53fc2f7edf36d9" alt="Download on the App Store">
+            </a>
+            
+            <a href='https://play.google.com/store/apps/details?id=com.scottdenowh.osd3' class="store-button">
+                <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+            </a>
+        </div>
+
+        <p>Can't install the app? No problem!</p>
+        <a href="https://www.oldsettlersdays.com/mobile/" class="schedule-link">View Mobile Schedule</a>
+    </div>
 </body>
 </html>

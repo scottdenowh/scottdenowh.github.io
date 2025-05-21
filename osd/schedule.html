@@ -65,6 +65,30 @@
             margin-left: 10px; 
         }
     </style>
+    <!-- Toast Container Style -->
+ <style>
+ .toast-container {
+ position: fixed;
+ top: 20px;
+ right: 20px;
+ z-index: 1050; /* Ensure toasts are above other elements */
+ }
+ .toast {
+ opacity: 1 !important; /* Override Bootstrap's default opacity */
+ margin-bottom: 10px;
+ }
+ .toast-success {
+ background-color: #28a745; /* Bootstrap success green */
+ color: #fff;
+ }
+ .toast-error {
+ background-color: #dc3545; /* Bootstrap danger red */
+ color: #fff;
+ }
+ .toast-body {
+ word-break: break-word;
+ }
+ </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main-nav">
@@ -102,6 +126,11 @@
         <div id="schedule-list">
             <p>Loading schedule data...</p>
         </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container">
+ <!-- Toasts will be appended here -->
     </div>
 
     <!-- Edit/Add Schedule Entry Modal -->
@@ -530,8 +559,7 @@
         async function saveAllChangesToServer() {
             if (!currentScheduleData) {
                 alert('No data to save.');
-                return;
-            }
+ return;            }
             const saveButton = document.getElementById('save-all-changes-button');
             saveButton.disabled = true;
             saveButton.textContent = 'Saving...';
@@ -540,7 +568,7 @@
                 const user = auth.currentUser;
                 if (!user) {
                     alert('You are not logged in. Please log in again.');
-                    saveButton.disabled = false;
+ saveButton.disabled = false;
                     saveButton.textContent = 'Save All Changes to Server';
                     window.location.href = "login.html";
                     return;
@@ -559,14 +587,30 @@
                     throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
                 }
                 const result = await response.json();
-                alert(result.message || 'Changes saved successfully!');
+ showToast(result.message || 'Changes saved successfully!', 'success');
             } catch (error) {
                 console.error('Error saving schedule data:', error);
-                alert(`Error saving changes: ${error.message}`);
+ showToast(`Error saving changes: ${error.message}`, 'error');
             } finally {
                 saveButton.disabled = false;
                 saveButton.textContent = 'Save All Changes to Server';
             }
+        }
+
+        function showToast(message, type = 'success') {
+ const toastContainer = document.querySelector('.toast-container');
+ const toast = document.createElement('div');
+ toast.classList.add('toast', `toast-${type}`);
+ toast.setAttribute('role', 'alert');
+ toast.setAttribute('aria-live', 'assertive');
+ toast.setAttribute('aria-atomic', 'true');
+ toast.innerHTML = `
+ <div class="toast-body">
+ ${message}
+ </div>
+ `;
+ toastContainer.appendChild(toast);
+ $(toast).toast({ delay: 5000 }).toast('show');
         }
     </script>
 </body>

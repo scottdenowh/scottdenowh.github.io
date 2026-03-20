@@ -1,0 +1,13 @@
+diff --git a/node_modules/firebase-tools/lib/deploy/functions/prepare.js b/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+index 1b24d27..5bfedf2 100644
+--- a/node_modules/firebase-tools/lib/deploy/functions/prepare.js
++++ b/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+@@ -67,7 +67,7 @@ async function prepare(context, options, payload) {
+     }
+     context.hasRuntimeConfig = Object.keys(runtimeConfig).some((k) => k !== "firebase");
+     const wantBuilds = await loadCodebases(context.config, options, firebaseConfig, runtimeConfig, context.filters);
+-    if (Object.values(wantBuilds).some((b) => b.extensions)) {
++    if (Object.values(wantBuilds).some((b) => b.extensions && Object.keys(b.extensions).length > 0)) {
+         const extContext = {};
+         const extPayload = {};
+         await (0, prepare_1.prepareDynamicExtensions)(extContext, options, extPayload, wantBuilds);

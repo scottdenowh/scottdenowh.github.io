@@ -107,6 +107,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="schedule.html">Schedule <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="notifications.html">Notifications</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -118,7 +121,10 @@
 
     <!-- Fixed Save Bar -->
     <div class="save-bar">
-        <button class="btn btn-success" id="save-all-changes-button">Save All Changes to Server</button>
+        <div class="d-flex align-items-center">
+            <span class="text-success mr-3">All changes saved</span>
+            <button class="btn btn-primary btn-sm" id="save-all-changes-button">Save Changes</button>
+        </div>
     </div>
 
     <div class="container mt-4">
@@ -149,7 +155,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="edit-eventName">Event Name</label>
-                            <input type="text" class="form-control" id="edit-eventName">
+                            <textarea class="form-control" id="edit-eventName" rows="4"></textarea>
+                            <small class="form-text text-muted">Use Shift+Enter to add a new line</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="edit-glyph">Glyph</label>
@@ -172,7 +179,8 @@
                     </div>
                     <div class="form-group">
                         <label for="edit-extra">Extra Info</label>
-                        <input type="text" class="form-control" id="edit-extra">
+                        <textarea class="form-control" id="edit-extra" rows="2"></textarea>
+                        <small class="form-text text-muted">Use Shift+Enter to add a new line</small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -256,6 +264,8 @@
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         let currentScheduleData = null;
+        let originalScheduleData = null; // Store original data for comparison
+        let hasUnsavedChanges = false; // Track if there are unsaved changes
 
         auth.onAuthStateChanged(function(user) {
             if (user) {
@@ -291,11 +301,54 @@
 
             fetch(cloudFunctionUrl)
                 .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
-                .then(data => { currentScheduleData = data; renderSchedule(currentScheduleData); })
+                .then(data => { 
+                    currentScheduleData = data; 
+                    originalScheduleData = JSON.parse(JSON.stringify(data)); // Deep copy for comparison
+                    hasUnsavedChanges = false;
+                    updateSaveBar();
+                    renderSchedule(currentScheduleData); 
+                })
                 .catch(error => {
                     console.error('Error fetching schedule data:', error);
                     scheduleListDiv.innerHTML = '<p>Error loading schedule data.</p>';
                 });
+        }
+
+        function updateSaveBar() {
+            const saveBar = document.querySelector('.save-bar');
+            if (!saveBar) return;
+
+            if (hasUnsavedChanges) {
+                saveBar.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <span class="text-warning mr-3">You have unsaved changes</span>
+                        <button class="btn btn-outline-secondary btn-sm mr-2" onclick="revertChanges()">Revert Changes</button>
+                        <button class="btn btn-primary btn-sm" id="save-all-changes-button" onclick="saveAllChangesToServer()">Save Changes</button>
+                    </div>
+                `;
+            } else {
+                saveBar.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <span class="text-success mr-3">All changes saved</span>
+                        <button class="btn btn-primary btn-sm" id="save-all-changes-button" onclick="saveAllChangesToServer()">Save Changes</button>
+                    </div>
+                `;
+            }
+        }
+
+        function revertChanges() {
+            if (confirm('Are you sure you want to revert all unsaved changes?')) {
+                currentScheduleData = JSON.parse(JSON.stringify(originalScheduleData));
+                hasUnsavedChanges = false;
+                updateSaveBar();
+                renderSchedule(currentScheduleData);
+            }
+        }
+
+        function checkForChanges() {
+            if (!originalScheduleData || !currentScheduleData) return;
+            hasUnsavedChanges = JSON.stringify(originalScheduleData) !== JSON.stringify(currentScheduleData);
+            updateSaveBar();
         }
 
         function renderSchedule(scheduleData) {
@@ -348,11 +401,11 @@
                         let entryHtml = `
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
-                                    <p><strong>${entry.eventName || ''}</strong></p>
+                                    <p><strong>${(entry.eventName || '').replace(/\n/g, '<br>')}</strong></p>
                                     ${entry.glyph ? `<p>Glyph: ${entry.glyph}</p>` : ''}
                                     <p>Time: ${entry.startTime || ''}${entry.endTime ? ' - ' + entry.endTime : ''}</p>
                                     ${entry.location ? `<p>Location: ${entry.location}</p>` : ''}
-                                    ${entry.extra ? `<p>Extra: ${entry.extra}</p>` : ''}
+                                    ${entry.extra ? `<p>Extra: ${entry.extra.replace(/\n/g, '<br>')}</p>` : ''}
                                 </div>
                                 <div>
                                     <button class="btn btn-sm btn-outline-primary direct-edit-btn edit-btn" type="button" data-index="${originalEntryIndex}">Edit</button>
@@ -495,6 +548,7 @@
                 if (!currentScheduleData) currentScheduleData = { schedules: [], scheduleGroups: [] }; // Initialize if empty
                 currentScheduleData.schedules.push(newEntryData);
             }
+            checkForChanges();
             renderSchedule(currentScheduleData); 
             $('#editScheduleModal').modal('hide');
          }
@@ -509,6 +563,7 @@
             const groupIndex = document.getElementById('edit-group-index').value;
             if (!currentScheduleData || typeof currentScheduleData.scheduleGroups[groupIndex] === 'undefined') return;
             currentScheduleData.scheduleGroups[groupIndex] = document.getElementById('edit-groupName').value;
+            checkForChanges();
             renderSchedule(currentScheduleData);
             $('#editGroupNameModal').modal('hide');
         }
@@ -516,6 +571,7 @@
             if (!currentScheduleData || !currentScheduleData.schedules[originalEntryIndex]) return;
             if (confirm(`Are you sure you want to delete "${currentScheduleData.schedules[originalEntryIndex].eventName}"?`)) {
                 currentScheduleData.schedules.splice(originalEntryIndex, 1);
+                checkForChanges();
                 renderSchedule(currentScheduleData);
             }
         }
@@ -525,6 +581,7 @@
             const newEntry = JSON.parse(JSON.stringify(originalEntry)); 
             newEntry.eventName = `${originalEntry.eventName} (Copy)`;
             currentScheduleData.schedules.push(newEntry);
+            checkForChanges();
             renderSchedule(currentScheduleData);
         }
         function openCopyToGroupModal(originalEntryIndex) { 
@@ -552,6 +609,7 @@
             const newEntry = JSON.parse(JSON.stringify(originalEntry));
             newEntry.group = targetGroupIndex;
             currentScheduleData.schedules.push(newEntry);
+            checkForChanges();
             renderSchedule(currentScheduleData);
             $('#copyToGroupModal').modal('hide');
         }
@@ -559,7 +617,8 @@
         async function saveAllChangesToServer() {
             if (!currentScheduleData) {
                 alert('No data to save.');
- return;            }
+                return;
+            }
             const saveButton = document.getElementById('save-all-changes-button');
             saveButton.disabled = true;
             saveButton.textContent = 'Saving...';
@@ -568,11 +627,18 @@
                 const user = auth.currentUser;
                 if (!user) {
                     alert('You are not logged in. Please log in again.');
- saveButton.disabled = false;
+                    saveButton.disabled = false;
                     saveButton.textContent = 'Save All Changes to Server';
                     window.location.href = "login.html";
                     return;
                 }
+
+                // Sort schedules by group index before saving
+                const sortedData = {
+                    ...currentScheduleData,
+                    schedules: [...currentScheduleData.schedules].sort((a, b) => a.group - b.group)
+                };
+
                 const idToken = await user.getIdToken(true);
                 const response = await fetch(updateFunctionUrl, {
                     method: 'POST',
@@ -580,17 +646,21 @@
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + idToken
                     },
-                    body: JSON.stringify(currentScheduleData)
+                    body: JSON.stringify(sortedData)
                 });
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({ message: response.statusText }));
                     throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
                 }
                 const result = await response.json();
- showToast(result.message || 'Changes saved successfully!', 'success');
+                showToast(result.message || 'Changes saved successfully!', 'success');
+                originalScheduleData = JSON.parse(JSON.stringify(sortedData));
+                currentScheduleData = sortedData;
+                hasUnsavedChanges = false;
+                updateSaveBar();
             } catch (error) {
                 console.error('Error saving schedule data:', error);
- showToast(`Error saving changes: ${error.message}`, 'error');
+                showToast(`Error saving changes: ${error.message}`, 'error');
             } finally {
                 saveButton.disabled = false;
                 saveButton.textContent = 'Save All Changes to Server';

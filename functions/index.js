@@ -96,3 +96,106 @@ exports.updateScheduleData = functions.https.onRequest(async (req, res) => {
     res.status(500).send('Error updating schedule data');
   }
 });
+
+exports.sendNotification = functions.https.onRequest(async (req, res) => {
+    // Enable CORS
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'POST');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.status(204).send('');
+        return;
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+        res.status(405).send('Method Not Allowed');
+        return;
+    }
+
+    try {
+        // Get the notification data from the request
+        const { title, body } = req.body;
+
+        if (!title || !body) {
+            res.status(400).send('Title and body are required');
+            return;
+        }
+
+        // Get all FCM tokens from the database
+        const tokensSnapshot = await admin.database().ref('fcmTokens').once('value');
+        const tokens = tokensSnapshot.val();
+
+        if (!tokens) {
+            console.log('No tokens found in database');
+            res.status(200).send('No devices registered for notifications');
+            return;
+        }
+
+        const tokenList = Object.keys(tokens);
+        console.log(`Attempting to send to ${tokenList.length} devices`);
+
+        if (tokenList.length === 0) {
+            console.log('Token list is empty');
+            res.status(200).send('No valid tokens found');
+            return;
+        }
+
+        // Send to each token individually
+        const results = await Promise.allSettled(
+            tokenList.map(token => {
+                const message = {
+                    notification: {
+                        title,
+                        body
+                    },
+                    token
+                };
+                return admin.messaging().send(message);
+            })
+        );
+
+        // Process results
+        const successful = results.filter(r => r.status === 'fulfilled').length;
+        const failed = results.filter(r => r.status === 'rejected').length;
+
+        // Remove failed tokens
+        const failedTokens = results
+            .map((result, index) => result.status === 'rejected' ? tokenList[index] : null)
+            .filter(Boolean);
+
+        if (failedTokens.length > 0) {
+            const updates = {};
+            failedTokens.forEach(token => {
+                updates[`fcmTokens/${token}`] = null;
+            });
+            await admin.database().ref().update(updates);
+        }
+
+        // Log the notification
+        const notificationLog = {
+            timestamp: admin.database.ServerValue.TIMESTAMP,
+            title,
+            body,
+            totalDevices: tokenList.length,
+            successful,
+            failed,
+            failedTokens
+        };
+
+        // Add to notification logs
+        await admin.database().ref('notificationLogs').push(notificationLog);
+
+        res.status(200).json({
+            success: true,
+            message: `Successfully sent to ${successful} devices, failed for ${failed} devices`,
+            failedTokens
+        });
+
+    } catch (error) {
+        console.error('Error sending notification:', error);
+        res.status(500).send('Error sending notification: ' + error.message);
+    }
+});

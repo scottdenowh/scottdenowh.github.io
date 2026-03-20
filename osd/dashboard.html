@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>OSD Dashboard</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <style>
@@ -19,6 +19,43 @@
             max-width: 250px;
             height: auto; /* Maintain aspect ratio */
             border-radius: 8px; /* Optional: if you want rounded corners */
+        }
+        .dashboard-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .dashboard-card .card-body {
+            padding: 1.5rem;
+        }
+        .dashboard-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+        .dashboard-card .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .welcome-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .welcome-section p {
+            color: #6c757d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -39,6 +76,9 @@
                 <li class="nav-item">
                     <a class="nav-link internal-nav" href="schedule.html">Schedule</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link internal-nav" href="notifications.html">Notifications</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -53,11 +93,43 @@
             <img src="https://firebasestorage.googleapis.com/v0/b/osd-admin-portal.firebasestorage.app/o/artist_images%2FOSD_Logo_2025_updated_text_blue.png?alt=media&token=01f9f8f1-941a-425c-aa7f-734a65b5f5bc" alt="OSD Logo" class="hero-image">
         </div>
 
-        <h2>Welcome to the Admin Dashboard</h2>
-        <p>Select an option from the navigation bar to manage content.</p>
+        <div class="welcome-section">
+            <h2>Welcome to the Admin Dashboard</h2>
+            <p>Manage your event content, artists, and schedule all in one place. Select a section below to get started.</p>
+        </div>
 
-        <!-- Dashboard content goes here -->
-
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon">🎨</div>
+                        <h3 class="card-title">Artists</h3>
+                        <p class="card-text">Manage artist profiles, images, and information. Add new artists or update existing ones.</p>
+                        <a href="artists.html" class="btn btn-primary">Manage Artists</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon">📅</div>
+                        <h3 class="card-title">Schedule</h3>
+                        <p class="card-text">Create and manage the event schedule. Organize events by day and time.</p>
+                        <a href="schedule.html" class="btn btn-primary">Manage Schedule</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-body text-center">
+                        <div class="card-icon">🔔</div>
+                        <h3 class="card-title">Notifications</h3>
+                        <p class="card-text">Send push notifications to all users of the mobile app.</p>
+                        <a href="notifications.html" class="btn btn-primary">Send Notifications</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

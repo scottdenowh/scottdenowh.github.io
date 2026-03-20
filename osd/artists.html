@@ -15,13 +15,27 @@
             position: fixed;
             top: 56px; 
             left: 0; right: 0;
-            background-color: #f8f9fa; 
+            background-color: #f8f9fa;
             padding: 10px 15px;
             border-bottom: 1px solid #dee2e6;
             z-index: 1020; 
             display: flex;
             justify-content: space-between; /* Align Add and Save buttons */
             align-items: center;
+        }
+        .save-bar .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .save-bar .status {
+            margin: 0 15px;
+            color: #6c757d;
+        }
+        .save-bar .right-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .artist-entry {
             background-color: #f9f9f9;
@@ -72,6 +86,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="schedule.html">Schedule</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="notifications.html">Notifications</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -83,8 +100,11 @@
 
     <!-- Fixed Save Bar -->
     <div class="save-bar">
-        <button class="btn btn-primary" id="add-new-artist-button">+ Add New Artist</button>
-        <button class="btn btn-success" id="save-all-changes-button">Save All Changes to Server</button>
+        <button class="btn btn-primary btn-sm" id="add-new-artist-button">+ Add New Artist</button>
+        <div class="d-flex align-items-center">
+            <span class="text-success mr-3">All changes saved</span>
+            <button class="btn btn-primary btn-sm" id="save-all-changes-button">Save Changes</button>
+        </div>
     </div>
 
     <div class="container mt-4">
@@ -160,6 +180,8 @@
         const auth = firebase.auth();
         const storage = firebase.storage(); // Initialize Firebase Storage
         let currentScheduleData = null; // This will hold the entire object from Firestore {artists: [], schedules: [], scheduleGroups: []}
+        let originalScheduleData = null; // Store original data for comparison
+        let hasUnsavedChanges = false; // Track if there are unsaved changes
         let sortableArtists = null;
 
         auth.onAuthStateChanged(function(user) {
@@ -202,13 +224,59 @@
                 .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
                 .then(data => {
                     currentScheduleData = data; 
+                    originalScheduleData = JSON.parse(JSON.stringify(data)); // Deep copy for comparison
+                    hasUnsavedChanges = false;
                     if (!currentScheduleData.artists) currentScheduleData.artists = []; // Ensure artists array exists
+                    updateSaveBar();
                     renderArtists(currentScheduleData.artists);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                     artistListContainer.innerHTML = '<p>Error loading artist data.</p>';
                 });
+        }
+
+        function updateSaveBar() {
+            const saveBar = document.querySelector('.save-bar');
+            if (!saveBar) return;
+
+            if (hasUnsavedChanges) {
+                saveBar.innerHTML = `
+                    <button class="btn btn-primary btn-sm" id="add-new-artist-button">+ Add New Artist</button>
+                    <div class="d-flex align-items-center">
+                        <span class="text-warning mr-3">You have unsaved changes</span>
+                        <button class="btn btn-outline-secondary btn-sm mr-2" onclick="revertChanges()">Revert Changes</button>
+                        <button class="btn btn-primary btn-sm" id="save-all-changes-button" onclick="saveAllChangesToServer()">Save Changes</button>
+                    </div>
+                `;
+                // Reattach event listeners
+                document.getElementById('add-new-artist-button').addEventListener('click', () => openEditArtistModal(null));
+            } else {
+                saveBar.innerHTML = `
+                    <button class="btn btn-primary btn-sm" id="add-new-artist-button">+ Add New Artist</button>
+                    <div class="d-flex align-items-center">
+                        <span class="text-success mr-3">All changes saved</span>
+                        <button class="btn btn-primary btn-sm" id="save-all-changes-button" onclick="saveAllChangesToServer()">Save Changes</button>
+                    </div>
+                `;
+                // Reattach event listeners
+                document.getElementById('add-new-artist-button').addEventListener('click', () => openEditArtistModal(null));
+            }
+        }
+
+        function revertChanges() {
+            if (confirm('Are you sure you want to revert all unsaved changes?')) {
+                currentScheduleData = JSON.parse(JSON.stringify(originalScheduleData));
+                hasUnsavedChanges = false;
+                updateSaveBar();
+                renderArtists(currentScheduleData.artists);
+            }
+        }
+
+        function checkForChanges() {
+            if (!originalScheduleData || !currentScheduleData) return;
+            hasUnsavedChanges = JSON.stringify(originalScheduleData) !== JSON.stringify(currentScheduleData);
+            updateSaveBar();
         }
 
         function renderArtists(artists) {
@@ -303,47 +371,57 @@
             $('#editArtistModal').modal('show');
         }
 
-        async function saveArtistChanges() {
+        function saveArtistChanges() {
             const originalIndex = document.getElementById('edit-artist-original-index').value;
             const title = document.getElementById('edit-artist-title').value;
             const banner = document.getElementById('edit-artist-banner').value;
             const subtitle = document.getElementById('edit-artist-subtitle').value;
-            let imageUrl = document.getElementById('edit-artist-imageUrl').value;
+            const imageUrl = document.getElementById('edit-artist-imageUrl').value;
             const imageFile = document.getElementById('edit-artist-imageFile').files[0];
-
-            if (!title) { alert('Artist title is required.'); return; }
 
             const saveButton = document.getElementById('save-artist-changes-button');
             saveButton.disabled = true;
             saveButton.textContent = 'Saving...';
 
-            try {
-                if (imageFile) {
-                    // Upload new image to Firebase Storage
-                    const imageName = `${Date.now()}_${imageFile.name}`.replace(/[^a-zA-Z0-9._-]/g, '_'); // Sanitize name
-                    const storageRef = storage.ref(`artist_images/${imageName}`);
-                    const uploadTask = await storageRef.put(imageFile);
-                    imageUrl = await uploadTask.ref.getDownloadURL();
-                    console.log('File available at', imageUrl);
-                }
-
-                const artistData = { title, banner, subtitle, imageUrl };
+            const saveArtistData = async (finalImageUrl) => {
+                const artistData = {
+                    title,
+                    banner,
+                    subtitle,
+                    imageUrl: finalImageUrl || imageUrl
+                };
 
                 if (originalIndex !== null && originalIndex !== '') {
                     // Editing existing artist
-                    currentScheduleData.artists[parseInt(originalIndex)] = artistData;
+                    currentScheduleData.artists[originalIndex] = artistData;
                 } else {
                     // Adding new artist
                     currentScheduleData.artists.push(artistData);
                 }
+
+                checkForChanges();
                 renderArtists(currentScheduleData.artists);
                 $('#editArtistModal').modal('hide');
-            } catch (error) {
-                console.error("Error saving artist (or uploading image):", error);
-                alert("Error saving artist: " + error.message);
-            } finally {
                 saveButton.disabled = false;
                 saveButton.textContent = 'Save Artist';
+            };
+
+            if (imageFile) {
+                // Upload new image
+                const storageRef = storage.ref();
+                const imageRef = storageRef.child(`artist-images/${Date.now()}_${imageFile.name}`);
+                
+                imageRef.put(imageFile)
+                    .then(snapshot => snapshot.ref.getDownloadURL())
+                    .then(downloadURL => saveArtistData(downloadURL))
+                    .catch(error => {
+                        console.error("Error uploading image:", error);
+                        alert("Error uploading image: " + error.message);
+                        saveButton.disabled = false;
+                        saveButton.textContent = 'Save Artist';
+                    });
+            } else {
+                saveArtistData();
             }
         }
 
@@ -352,22 +430,26 @@
             const artist = currentScheduleData.artists[artistIndex];
             if (confirm(`Are you sure you want to delete "${artist.title}"?`)) {
                 currentScheduleData.artists.splice(artistIndex, 1);
+                checkForChanges();
                 renderArtists(currentScheduleData.artists);
             }
         }
 
         async function saveAllChangesToServer() {
-            if (!currentScheduleData) { alert('No data to save.'); return; }
-            
-            const saveAllButton = document.getElementById('save-all-changes-button');
-            saveAllButton.disabled = true;
-            saveAllButton.textContent = 'Saving to Server...';
-
+            if (!currentScheduleData) {
+                alert('No data to save.');
+                return;
+            }
+            const saveButton = document.getElementById('save-all-changes-button');
+            saveButton.disabled = true;
+            saveButton.textContent = 'Saving...';
             const updateFunctionUrl = 'https://us-central1-osd-admin-portal.cloudfunctions.net/updateScheduleData';
             try {
                 const user = auth.currentUser;
                 if (!user) {
                     alert('You are not logged in. Please log in again.');
+                    saveButton.disabled = false;
+                    saveButton.textContent = 'Save All Changes to Server';
                     window.location.href = "login.html";
                     return;
                 }
@@ -378,20 +460,23 @@
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + idToken
                     },
-                    body: JSON.stringify(currentScheduleData) // Send the whole scheduleData object
+                    body: JSON.stringify(currentScheduleData)
                 });
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({ message: response.statusText }));
                     throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
                 }
                 const result = await response.json();
-                alert(result.message || 'All changes saved successfully!');
+                alert(result.message || 'Changes saved successfully!');
+                originalScheduleData = JSON.parse(JSON.stringify(currentScheduleData));
+                hasUnsavedChanges = false;
+                updateSaveBar();
             } catch (error) {
                 console.error('Error saving all changes:', error);
                 alert(`Error saving changes: ${error.message}`);
             } finally {
-                saveAllButton.disabled = false;
-                saveAllButton.textContent = 'Save All Changes to Server';
+                saveButton.disabled = false;
+                saveButton.textContent = 'Save All Changes to Server';
             }
         }
     </script>

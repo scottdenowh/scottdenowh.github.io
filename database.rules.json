@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "fcmTokens": {
+      ".read": true,
+      ".write": true
+    },
+    "notificationLogs": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+} 

@@ -90,7 +90,7 @@
 
     <div class="container mt-4">
         <div class="hero-image-container">
-            <img src="https://firebasestorage.googleapis.com/v0/b/osd-admin-portal.firebasestorage.app/o/artist_images%2FOSD_Logo_2025_updated_text_blue.png?alt=media&token=01f9f8f1-941a-425c-aa7f-734a65b5f5bc" alt="OSD Logo" class="hero-image">
+            <img id="osd-brand-logo" src="" alt="OSD Logo" class="hero-image">
         </div>
 
         <div class="welcome-section">
@@ -137,8 +137,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-storage-compat.js"></script>
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -154,6 +155,8 @@
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const storage = firebase.storage();
+        const OSD_LOGO_STORAGE_PATH = 'artist_images/OSD_Logo_2025_updated_text_blue.png';
         let hasUnsavedChanges = false; // Assuming you might want unsaved changes check here too eventually
 
         // Check if user is logged in
@@ -161,7 +164,16 @@
             if (!user) {
                 // If not logged in, redirect to login page
                 window.location.href = "login.html";
+                return;
             }
+            storage.ref(OSD_LOGO_STORAGE_PATH).getDownloadURL()
+                .then(function (url) {
+                    const el = document.getElementById('osd-brand-logo');
+                    if (el) el.src = url;
+                })
+                .catch(function (err) {
+                    console.error('Could not load dashboard logo from Storage:', err);
+                });
         });
 
         // Logout functionality

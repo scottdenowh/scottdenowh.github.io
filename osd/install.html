@@ -98,7 +98,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://firebasestorage.googleapis.com/v0/b/osd-admin-portal.firebasestorage.app/o/artist_images%2FOSD_Logo_2025_updated_text_blue.png?alt=media&token=01f9f8f1-941a-425c-aa7f-734a65b5f5bc" alt="OSD Logo" class="logo">
+        <img id="osd-install-logo" src="" alt="OSD Logo" class="logo">
         
         <h1>Download the OSD App</h1>
         <p>Get the official Old Settlers Days app for the best festival experience!</p>
@@ -116,5 +116,30 @@
         <p>Can't install the app? No problem!</p>
         <a href="https://www.oldsettlersdays.com/mobile/" class="schedule-link">View Mobile Schedule</a>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.7.3/firebase-storage-compat.js"></script>
+    <script>
+        (function () {
+            var firebaseConfig = {
+                apiKey: "AIzaSyBAqJuLiFk1jH3Zzzaasq9gob98H3vWiTk",
+                authDomain: "osd-admin-portal.firebaseapp.com",
+                projectId: "osd-admin-portal",
+                storageBucket: "osd-admin-portal.firebasestorage.app",
+                messagingSenderId: "192339428008",
+                appId: "1:192339428008:web:6cb247be2c38a521b9789d",
+                measurementId: "G-9NDRFJ0J8H"
+            };
+            firebase.initializeApp(firebaseConfig);
+            var path = 'artist_images/OSD_Logo_2025_updated_text_blue.png';
+            firebase.storage().ref(path).getDownloadURL()
+                .then(function (url) {
+                    var el = document.getElementById('osd-install-logo');
+                    if (el) el.src = url;
+                })
+                .catch(function (err) {
+                    console.error('Could not load install page logo from Storage:', err);
+                });
+        })();
+    </script>
 </body>
 </html>
